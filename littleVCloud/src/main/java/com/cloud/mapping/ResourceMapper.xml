@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.dao.ResourceMapper">
+	<resultMap id="BaseResultMap" type="com.cloud.model.Resource">
+		<id column="resourceId" property="resourceid" jdbcType="INTEGER" />
+		<result column="resourceName" property="resourcename" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="path" property="path" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="uploaderId" property="uploaderid" jdbcType="INTEGER" />
+		<result column="uploadTime" property="uploadtime" jdbcType="VARCHAR" />
+		<result column="downloadTimes" property="downloadtimes"
+			jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="complete" property="complete" jdbcType="INTEGER" />
+		<result column="process" property="process" jdbcType="INTEGER" />
+		<result column="size" property="size" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		resourceId, resourceName, type, path, description, uploaderId, uploadTime,
+		downloadTimes,
+		status, complete, process, size
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where resourceId = #{resourceid,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getResourcesByUploader" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where uploaderId = #{uploaderid,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getResourcesByName" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where resourceName = #{resourcename,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getResourcesByType" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where type = #{resourcetype,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getSharedResource" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where status = 1 and uploaderId = #{uploaderid,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from resource
+		where resourceId = #{resourceid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.cloud.model.Resource">
+		insert into resource (resourceId, resourceName, type,
+		path, description, uploaderId,
+		uploadTime, downloadTimes, status
+		)
+		values (#{resourceid,jdbcType=INTEGER}, #{resourcename,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{path,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{uploaderid,jdbcType=INTEGER},
+		#{uploadtime,jdbcType=VARCHAR}, #{downloadtimes,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER}, #{complete,jdbcType=INTEGER},#{process,jdbcType=INTEGER},
+		#{size,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.cloud.model.Resource">
+		insert into resource
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="resourceid != null">
+				resourceId,
+			</if>
+			<if test="resourcename != null">
+				resourceName,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="path != null">
+				path,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="uploaderid != null">
+				uploaderId,
+			</if>
+			<if test="uploadtime != null">
+				uploadTime,
+			</if>
+			<if test="downloadtimes != null">
+				downloadTimes,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="complete != null">
+				complete,
+			</if>
+			<if test="process != null">
+				process,
+			</if>
+			<if test="size != null">
+				size,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="resourceid != null">
+				#{resourceid,jdbcType=INTEGER},
+			</if>
+			<if test="resourcename != null">
+				#{resourcename,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				#{path,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="uploaderid != null">
+				#{uploaderid,jdbcType=INTEGER},
+			</if>
+			<if test="uploadtime != null">
+				#{uploadtime,jdbcType=VARCHAR},
+			</if>
+			<if test="downloadtimes != null">
+				#{downloadtimes,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="complete != null">
+				#{complete,jdbcType=INTEGER},
+			</if>
+			<if test="process != null">
+				#{process,jdbcType=INTEGER},
+			</if>
+			<if test="size != null">
+				#{size,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.Resource">
+		update resource
+		<set>
+			<if test="resourcename != null">
+				resourceName = #{resourcename,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				path = #{path,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="uploaderid != null">
+				uploaderId = #{uploaderid,jdbcType=INTEGER},
+			</if>
+			<if test="uploadtime != null">
+				uploadTime = #{uploadtime,jdbcType=VARCHAR},
+			</if>
+			<if test="downloadtimes != null">
+				downloadTimes = #{downloadtimes,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="complete != null">
+				complete = #{complete,jdbcType=INTEGER},
+			</if>
+			<if test="process != null">
+				process = #{process,jdbcType=INTEGER},
+			</if>
+			<if test="size != null">
+				process = #{size,jdbcType=INTEGER},
+			</if>
+		</set>
+		where resourceId = #{resourceid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cloud.model.Resource">
+		update resource
+		set resourceName = #{resourcename,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		path = #{path,jdbcType=VARCHAR},
+		description = #{description,jdbcType=VARCHAR},
+		uploaderId = #{uploaderid,jdbcType=INTEGER},
+		uploadTime = #{uploadtime,jdbcType=VARCHAR},
+		downloadTimes = #{downloadtimes,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		complete = #{complete,jdbcType=INTEGER},
+		process = #{process,jdbcType=INTEGER},
+		size = #{size,jdbcType=INTEGER}
+		where resourceId = #{resourceid,jdbcType=INTEGER}
+	</update>
+</mapper>
