@@ -113,14 +113,14 @@ public class TestTeamProgram {
 	@Test
 	public void testInsertTeam() {
 		Team team = new Team();
-		team.setTeamname("test1");
+		team.setTeamName("test1");
 			logger.info(teamService.createTeam(team));
 	}
 	
 	@Test
 	public void testModifyTeam() {
 		Team team = teamService.getTeamById(3);
-		team.setTeamname("test2");
+		team.setTeamName("test2");
 			logger.info(teamService.modifyTeam(team));
 	}	
 	@Test

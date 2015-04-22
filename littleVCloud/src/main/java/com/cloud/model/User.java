@@ -3,13 +3,13 @@ package com.cloud.model;
 import java.util.List;
 
 public class User {
-    private Integer userid;
+    private Integer userId;
 
-    private String username;
+    private String userName;
 
     private String password;
 
-    private String useraccount;
+    private String userAccount;
     
     private List<Role> roles;
     
@@ -31,20 +31,20 @@ public class User {
 		this.teams = teams;
 	}
 
-	public Integer getUserid() {
-        return userid;
+	public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userid) {
+        this.userId = userid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String username) {
+        this.userName = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -55,11 +55,11 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getUseraccount() {
-        return useraccount;
+    public String getUserAccount() {
+        return userAccount;
     }
 
-    public void setUseraccount(String useraccount) {
-        this.useraccount = useraccount == null ? null : useraccount.trim();
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount == null ? null : userAccount.trim();
     }
 }

@@ -3,26 +3,26 @@ package com.cloud.model;
 import java.util.List;
 
 public class Team {
-    private Integer teamid;
+    private Integer teamId;
 
-    private String teamname;
+    private String teamName;
     
     private List<User> users;
 
-    public Integer getTeamid() {
-        return teamid;
+    public Integer getTeamId() {
+        return teamId;
     }
 
-    public void setTeamid(Integer teamid) {
-        this.teamid = teamid;
+    public void setTeamId(Integer teamid) {
+        this.teamId = teamid;
     }
 
-    public String getTeamname() {
-        return teamname;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeamname(String teamname) {
-        this.teamname = teamname == null ? null : teamname.trim();
+    public void setTeamName(String teamname) {
+        this.teamName = teamname == null ? null : teamname.trim();
     }
 
 	public List<User> getUsers() {

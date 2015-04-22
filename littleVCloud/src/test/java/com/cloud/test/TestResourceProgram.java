@@ -116,15 +116,15 @@ public class TestResourceProgram {
 	@Test
 	public void testInsert() {
 			Resource resource = new Resource();
-			resource.setResourcename("myfile");
+			resource.setResourceName("myfile");
 			resource.setDescription("aaaaaa");
-			resource.setDownloadtimes(2);
+			resource.setDownloadTimes(2);
 			resource.setPath("/home/mydir/");
 			resource.setSize(20);
 			resource.setType("doc");
-			resource.setUploaderid(1);
+			resource.setUploaderId(1);
 			resource.setStatus(1);
-			resource.setUploadtime("2015-4-20");
+			resource.setUploadTime("2015-4-20");
 			logger.info(resourceService.addResource(resource));
 	}
 	

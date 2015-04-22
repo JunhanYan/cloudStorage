@@ -3,7 +3,7 @@ package com.cloud.model;
 import java.util.List;
 
 public class Follow {
-    private Integer followid;
+    private Integer followId;
 
     private Integer who;
 
@@ -11,12 +11,12 @@ public class Follow {
     
    
 
-	public Integer getFollowid() {
-        return followid;
+	public Integer getFollowId() {
+        return followId;
     }
 
-    public void setFollowid(Integer followid) {
-        this.followid = followid;
+    public void setFollowId(Integer followid) {
+        this.followId = followid;
     }
 
     public Integer getWho() {

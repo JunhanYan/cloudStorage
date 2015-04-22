@@ -1,9 +1,9 @@
 package com.cloud.model;
 
 public class Resource {
-    private Integer resourceid;
+    private Integer resourceId;
 
-    private String resourcename;
+    private String resourceName;
 
     private String type;
 
@@ -11,11 +11,11 @@ public class Resource {
 
     private String description;
 
-    private Integer uploaderid;
+    private Integer uploaderId;
 
-    private String uploadtime;
+    private String uploadTime;
 
-    private Integer downloadtimes;
+    private Integer downloadTimes;
 
     private Integer status;
     
@@ -49,20 +49,20 @@ public class Resource {
 		this.process = process;
 	}
 
-	public Integer getResourceid() {
-        return resourceid;
+	public Integer getResourceId() {
+        return resourceId;
     }
 
-    public void setResourceid(Integer resourceid) {
-        this.resourceid = resourceid;
+    public void setResourceId(Integer resourceid) {
+        this.resourceId = resourceid;
     }
 
-    public String getResourcename() {
-        return resourcename;
+    public String getResourceName() {
+        return resourceName;
     }
 
-    public void setResourcename(String resourcename) {
-        this.resourcename = resourcename == null ? null : resourcename.trim();
+    public void setResourceName(String resourcename) {
+        this.resourceName = resourcename == null ? null : resourcename.trim();
     }
 
     public String getType() {
@@ -89,28 +89,28 @@ public class Resource {
         this.description = description == null ? null : description.trim();
     }
 
-    public Integer getUploaderid() {
-        return uploaderid;
+    public Integer getUploaderId() {
+        return uploaderId;
     }
 
-    public void setUploaderid(Integer uploaderid) {
-        this.uploaderid = uploaderid;
+    public void setUploaderId(Integer uploaderid) {
+        this.uploaderId = uploaderid;
     }
 
-    public String getUploadtime() {
-        return uploadtime;
+    public String getUploadTime() {
+        return uploadTime;
     }
 
-    public void setUploadtime(String uploadtime) {
-        this.uploadtime = uploadtime == null ? null : uploadtime.trim();
+    public void setUploadTime(String uploadtime) {
+        this.uploadTime = uploadtime == null ? null : uploadtime.trim();
     }
 
-    public Integer getDownloadtimes() {
-        return downloadtimes;
+    public Integer getDownloadTimes() {
+        return downloadTimes;
     }
 
-    public void setDownloadtimes(Integer downloadtimes) {
-        this.downloadtimes = downloadtimes;
+    public void setDownloadTimes(Integer downloadtimes) {
+        this.downloadTimes = downloadtimes;
     }
 
     public Integer getStatus() {

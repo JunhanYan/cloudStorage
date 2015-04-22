@@ -145,9 +145,9 @@ public class TestUserProgram {
 	@Test
 	public void testInsertUser() {
 		User u =new User();
-		u.setUsername("test2");
+		u.setUserName("test2");
 		u.setPassword("1");
-		u.setUseraccount("test2");
+		u.setUserAccount("test2");
 			logger.info(userService.addUser(u));
 	}
 	

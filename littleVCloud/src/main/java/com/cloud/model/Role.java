@@ -3,9 +3,9 @@ package com.cloud.model;
 import java.util.List;
 
 public class Role {
-    private Integer roleid;
+    private Integer roleId;
 
-    private String rolename;
+    private String roleName;
 
     private List<User> users;
     
@@ -17,19 +17,19 @@ public class Role {
 		this.users = users;
 	}
 
-	public Integer getRoleid() {
-        return roleid;
+	public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleid) {
+        this.roleId = roleid;
     }
 
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename == null ? null : rolename.trim();
+    public void setRoleName(String rolename) {
+        this.roleName = rolename == null ? null : rolename.trim();
     }
 }
