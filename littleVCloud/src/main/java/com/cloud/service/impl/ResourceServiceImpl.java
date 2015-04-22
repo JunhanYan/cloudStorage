@@ -75,4 +75,9 @@ public class ResourceServiceImpl implements ResourceServiceI {
 		}
 		return false;
 	}
+	
+	@Override
+	public List<Resource> getAllResources() {
+		return resourceMapper.getAllResources();
+	}
 }

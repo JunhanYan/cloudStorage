@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cloud.dao.FollowMapper">
 	<resultMap id="BaseResultMap" type="com.cloud.model.Follow">
-		<id column="followId" property="followid" jdbcType="INTEGER" />
+		<id column="followId" property="followId" jdbcType="INTEGER" />
 		<result column="who" property="who" jdbcType="INTEGER" />
 		<result column="target" property="target" jdbcType="INTEGER" />
 	</resultMap>

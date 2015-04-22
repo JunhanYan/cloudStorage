@@ -48,4 +48,16 @@ public class RoleServiceImpl implements RoleServiceI {
 	public Role getRoleAndMembers(int roleId){
 		return roleMapper.getRoleAndMembers(roleId);
 	}
+	@Override
+	public int createRole(Role role) {
+		return roleMapper.insertSelective(role);
+	}
+	@Override
+	public int deleteRole(int roleId) {
+		return roleMapper.deleteByPrimaryKey(roleId);
+	}
+	@Override
+	public int modifyRole(Role role) {
+		return  roleMapper.updateByPrimaryKeySelective(role);
+	}
 }

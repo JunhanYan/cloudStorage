@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cloud.dao.TeamMapper">
 	<resultMap id="BaseResultMap" type="com.cloud.model.Team">
-		<id column="teamId" property="teamid" jdbcType="INTEGER" />
-		<result column="teamName" property="teamname" jdbcType="VARCHAR" />
+		<id column="teamId" property="teamId" jdbcType="INTEGER" />
+		<result column="teamName" property="teamName" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		teamId, teamName
@@ -40,10 +40,10 @@
 	
 	<resultMap id="TeamUserMap" type="com.cloud.model.Team" extends="BaseResultMap">
 		<collection property="users" javaType="list" ofType="com.cloud.model.User">
-			<id property="userid" column="userId" />
-			<result property="username" column="userName"/>
+			<id property="userId" column="userId" />
+			<result property="userName" column="userName"/>
 			<result property="password" column="password"/>
-			<result property="useraccount" column="userAccount"/>
+			<result property="userAccount" column="userAccount"/>
 		</collection>
 	</resultMap>
 	<select id="getTeamAndMembers" resultMap="TeamUserMap"

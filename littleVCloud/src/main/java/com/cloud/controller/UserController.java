@@ -1,15 +1,23 @@
 package com.cloud.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.service.UserServiceI;
 import com.cloud.test.TestUserProgram;
+import com.cloud.model.Role;
+import com.cloud.model.Team;
 import com.cloud.model.User;
 
 import org.apache.log4j.Logger;
@@ -20,8 +28,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 @RequestMapping("/userController")
 public class UserController {
-	
-	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	private UserServiceI userService;
 
@@ -35,20 +41,77 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@RequestMapping("/showUser/{userid}")
-	public String showUser(@PathVariable int userid, HttpServletRequest request) {
-		User u = userService.getUserById(userid);
-		request.setAttribute("user", u);
-		return "showUser";
-	}
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String register(User user) {
+	public @ResponseBody User register(@RequestBody User user) {
 		
-		System.out.println("++++++++++++++++"+user.getUserName()+user.getPassword()+user.getUserAccount());
-		return "register";
-//		if(userService.addUser(user)>0)
-//			return "success";
-//		else
-//			return "failure";
+		if(userService.addUser(user)>0)
+			return user;
+		else
+			return null;
+	}
+	
+	@RequestMapping("/verifyUserAccount/{userAccount}")
+	public @ResponseBody Map<String, String> verifyUserAccount(@PathVariable String userAccount) {
+		Map<String,String> map = new HashMap<String,String >();
+		if(userService.verifyAccountAvaliable(userAccount))
+			{
+				map.put("result", "avaliable");
+			}else{
+				map.put("result", "unavaliable");
+			}
+		return map;
+	}
+	
+	@RequestMapping("/getUserById/{userId}")
+	public @ResponseBody User getUserById(@PathVariable int userId) {
+		User user = userService.getUserById(userId);
+		return user;
+	}
+	
+	@RequestMapping("/getUserAndRoles/{userId}")
+	public @ResponseBody User getUserAndRoles(@PathVariable int userId) {
+		User user = userService.getUserAndRoles(userId);
+		return user;
+	}
+	@RequestMapping("/getUserAndTeams/{userId}")
+	public @ResponseBody User getUserAndTeams(@PathVariable int userId) {
+		User user = userService.getUserAndTeams(userId);
+		return user;
+	}
+	
+	@RequestMapping("/getAllUsers")
+	public @ResponseBody List<User> getAllUsers() {
+		return userService.getAllUsers();		
+	}
+	
+	@RequestMapping("/getUserTeams/{userId}")
+	public @ResponseBody List<Team> getUserTeams(@PathVariable int userId) {
+		return userService.getUserTeams(userId);		
+	}
+	
+	@RequestMapping("/getUserRoles/{userId}")
+	public @ResponseBody List<Role> getUserRoles(@PathVariable int userId) {
+		return userService.getUserRoles(userId);		
+	}
+	
+	@RequestMapping(value="/modifyUser",method=RequestMethod.PUT)
+	public @ResponseBody User modifyUser(@RequestBody User user) {
+
+		if(userService.modifyUser(user)>0)
+			return user;
+		else
+			return null;
+	}
+	
+	@RequestMapping(value="/deleteUser/{userId}",method=RequestMethod.DELETE)
+	public @ResponseBody Map<String, String> deleteUser( int userId) {
+		Map<String,String> map = new HashMap<String,String >();
+		if(userService.deleteUser(userId)>0)
+			{
+				map.put("result", "success");
+			}else{
+				map.put("result", "failure");
+			}
+		return map;
 	}
 }

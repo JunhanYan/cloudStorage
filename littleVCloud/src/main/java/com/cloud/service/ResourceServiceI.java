@@ -17,6 +17,7 @@ public interface ResourceServiceI {
 	public boolean isResourceExist(String resourceName); //用于实现秒传
 	public String changeName(String resourceName);//MD5
 	public List<Resource> getSharedResource(int uploaderId);
+	public List<Resource> getAllResources();
 	//目录考虑由前台js解析path建立
 
 }

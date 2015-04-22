@@ -4,9 +4,9 @@ package com.cloud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloud.service.UserServiceI;
@@ -26,17 +26,25 @@ public class LoginController {
 		this.userService = userService;
 	}
  
-//	@RequestMapping(value="/login")
-//	public String login(String userAccount,String password) {
-//		
-//		User user = userService.login(userAccount, password);
-//		if(user!=null){
-//			return "success";
-//		}
-//		
-//		return "login";
-//	}
-	@RequestMapping(value="/login",method=RequestMethod.POST)
+	//返回json @ResponseBody，直接把json返回view
+	//         @RequestBody 解析view发来的json 
+	@RequestMapping(value="/login")
+	public @ResponseBody User login(String userAccount,String password) {
+		User user = userService.login(userAccount, password);
+		if(user!=null)
+			return user;
+		else
+			return null;
+	}
+	//先不实现，如有需要新建个token表
+	@RequestMapping(value="/loginByToken")
+	public @ResponseBody User loginByToken(String token) {
+		return null;
+	}
+	
+	
+	//跳转页面
+/*	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ModelAndView login(String userAccount,String password) {
 		ModelAndView mav = new ModelAndView("login");
 		String tip = verify(userAccount, password);
@@ -49,8 +57,9 @@ public class LoginController {
 			}
 		}
 		return mav;
-	}
-	public String verify(String userAccount,String password){
+	}*/
+	@RequestMapping(value="/verify")
+	public @ResponseBody String verify(String userAccount,String password){
 		String tip;
 		if("".equals(userAccount.trim())||userAccount == null)
 		{

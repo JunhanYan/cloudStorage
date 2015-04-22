@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="loginform" action="login.do" method="post">
+<form name="loginform" action="verify.do" method="post">
 <table width="300" border="1">
     <tr>
         <td colspan="2">登录窗口</td>

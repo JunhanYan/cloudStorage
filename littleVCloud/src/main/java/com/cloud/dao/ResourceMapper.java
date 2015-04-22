@@ -21,4 +21,5 @@ public interface ResourceMapper {
 	public List<Resource> getResourcesByUploader(int uploaderid);
 	public List<Resource> getResourcesByType(String resourcetype);
 	public List<Resource> getSharedResource(int uploaderid);
+	public List<Resource> getAllResources();
 }
