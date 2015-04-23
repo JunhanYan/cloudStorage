@@ -1,5 +1,11 @@
 package com.cloud.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+@RequestMapping("/downloadController")
 public class DownloadController {
 
 }

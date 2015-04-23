@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.model.Follow;
-import com.cloud.model.Team;
+
 import com.cloud.model.User;
 import com.cloud.service.FollowServiceI;
 @Controller
