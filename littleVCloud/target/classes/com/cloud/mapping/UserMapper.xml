@@ -15,7 +15,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where userId = #{userid,jdbcType=INTEGER}
+		where userId = #{userId,jdbcType=INTEGER}
 	</select>
 	
 	<select id="getAllUsers" resultMap="BaseResultMap">
@@ -58,7 +58,7 @@
 		user.userId, user.userName, user.password, user.userAccount,
 			team.teamId,team.teamName 
 		from user
-		JOIN user_team ON user.userId=user_team.userId and user_team.userId=#{userid,jdbcType=INTEGER}
+		JOIN user_team ON user.userId=user_team.userId and user_team.userId=#{userId,jdbcType=INTEGER}
 		JOIN team ON
 		user_team.teamId=team.teamId 
 	</select>
@@ -68,7 +68,7 @@
 		select
 		role.roleId,role.roleName 
 		from role
-		JOIN user_role ON user_role.roleId=role.roleId and user_role.userId=#{userid,jdbcType=INTEGER}		
+		JOIN user_role ON user_role.roleId=role.roleId and user_role.userId=#{userId,jdbcType=INTEGER}		
 	</select>
 	
 	<resultMap id="UserRoleMap" type="com.cloud.model.User" extends="BaseResultMap">
@@ -83,7 +83,7 @@
 		user.userId, user.userName, user.password, user.userAccount,
 			role.roleId,role.roleName 
 		from user
-		JOIN user_role ON user.userId=user_role.userId and user_role.userId=#{userid,jdbcType=INTEGER}
+		JOIN user_role ON user.userId=user_role.userId and user_role.userId=#{userId,jdbcType=INTEGER}
 		JOIN role ON
 		user_role.roleId=role.roleId 
 	</select>
@@ -91,14 +91,14 @@
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from user
-		where userId = #{userid,jdbcType=INTEGER}
+		where userId = #{userId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.cloud.model.User">
 		insert into user (userId, userName, password,
 		userAccount)
-		values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{useraccount,jdbcType=VARCHAR})
+		#{userAccount,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.cloud.model.User">
 		insert into user
@@ -118,16 +118,16 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="userid != null">
-				#{userid,jdbcType=INTEGER},
+				#{userId,jdbcType=INTEGER},
 			</if>
 			<if test="username != null">
-				#{username,jdbcType=VARCHAR},
+				#{userName,jdbcType=VARCHAR},
 			</if>
 			<if test="password != null">
 				#{password,jdbcType=VARCHAR},
 			</if>
 			<if test="useraccount != null">
-				#{useraccount,jdbcType=VARCHAR},
+				#{userAccount,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -135,22 +135,22 @@
 		update user
 		<set>
 			<if test="username != null">
-				userName = #{username,jdbcType=VARCHAR},
+				userName = #{userName,jdbcType=VARCHAR},
 			</if>
 			<if test="password != null">
 				password = #{password,jdbcType=VARCHAR},
 			</if>
 			<if test="useraccount != null">
-				userAccount = #{useraccount,jdbcType=VARCHAR},
+				userAccount = #{userAccount,jdbcType=VARCHAR},
 			</if>
 		</set>
-		where userId = #{userid,jdbcType=INTEGER}
+		where userId = #{userId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.cloud.model.User">
 		update user
-		set userName = #{username,jdbcType=VARCHAR},
+		set userName = #{userName,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
-		userAccount = #{useraccount,jdbcType=VARCHAR}
-		where userId = #{userid,jdbcType=INTEGER}
+		userAccount = #{userAccount,jdbcType=VARCHAR}
+		where userId = #{userId,jdbcType=INTEGER}
 	</update>
 </mapper>

@@ -1,43 +1,43 @@
 package com.cloud.model;
 
 public class Download {
-    private Integer downloadid;
+    private Integer downloadId;
 
-    private Integer userid;
+    private Integer userId;
 
-    private Integer resourceid;
+    private Integer resourceId;
 
-    private String downloadtime;
+    private String downloadTime;
 
-    public Integer getDownloadid() {
-        return downloadid;
+    public Integer getDownloadId() {
+        return downloadId;
     }
 
-    public void setDownloadid(Integer downloadid) {
-        this.downloadid = downloadid;
+    public void setDownloadId(Integer downloadId) {
+        this.downloadId = downloadId;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getResourceid() {
-        return resourceid;
+    public Integer getResourceId() {
+        return resourceId;
     }
 
-    public void setResourceid(Integer resourceid) {
-        this.resourceid = resourceid;
+    public void setResourceId(Integer resourceId) {
+        this.resourceId = resourceId;
     }
 
-    public String getDownloadtime() {
-        return downloadtime;
+    public String getDownloadTime() {
+        return downloadTime;
     }
 
-    public void setDownloadtime(String downloadtime) {
-        this.downloadtime = downloadtime == null ? null : downloadtime.trim();
+    public void setDownloadTime(String downloadTime) {
+        this.downloadTime = downloadTime == null ? null : downloadTime.trim();
     }
 }

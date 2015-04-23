@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cloud.dao.DownloadMapper">
 	<resultMap id="BaseResultMap" type="com.cloud.model.Download">
-		<id column="downloadId" property="downloadid" jdbcType="INTEGER" />
-		<result column="userId" property="userid" jdbcType="INTEGER" />
-		<result column="resourceId" property="resourceid" jdbcType="INTEGER" />
-		<result column="downloadTime" property="downloadtime" jdbcType="VARCHAR" />
+		<id column="downloadId" property="downloadId" jdbcType="INTEGER" />
+		<result column="userId" property="userId" jdbcType="INTEGER" />
+		<result column="resourceId" property="resourceId" jdbcType="INTEGER" />
+		<result column="downloadTime" property="downloadTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		downloadId, userId, resourceId, downloadTime
@@ -15,18 +15,36 @@
 		select
 		<include refid="Base_Column_List" />
 		from download
-		where downloadId = #{downloadid,jdbcType=INTEGER}
+		where downloadId = #{downloadId,jdbcType=INTEGER}
 	</select>
+	
+	<select id="getUserDownloadResources" resultType="com.cloud.model.Resource"
+		parameterType="int">
+		select
+		resource.resourceId, resource.resourceName, resource.type, resource.size
+		from resource
+		JOIN download ON resource.resourceId=download.resourceId and download.userId=#{userId,jdbcType=INTEGER}		
+	</select>
+	
+	<select id="getResourceDownloadUsers" resultType="com.cloud.model.User"
+		parameterType="int">
+		select
+		user.userId, user.userName, user.userAccount
+		from user
+		JOIN download ON user.userId=download.userId and download.resourceId=#{resourceId,jdbcType=INTEGER}		
+	</select>
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from download
-		where downloadId = #{downloadid,jdbcType=INTEGER}
+		where downloadId = #{downloadId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.cloud.model.Download">
 		insert into download (downloadId, userId, resourceId,
 		downloadTime)
-		values (#{downloadid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER},
-		#{resourceid,jdbcType=INTEGER},
-		#{downloadtime,jdbcType=VARCHAR})
+		values (#{downloadId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{resourceId,jdbcType=INTEGER},
+		#{downloadTime,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.cloud.model.Download">
 		insert into download
@@ -46,39 +64,39 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="downloadid != null">
-				#{downloadid,jdbcType=INTEGER},
+				#{downloadId,jdbcType=INTEGER},
 			</if>
-			<if test="userid != null">
-				#{userid,jdbcType=INTEGER},
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
 			</if>
-			<if test="resourceid != null">
-				#{resourceid,jdbcType=INTEGER},
+			<if test="resourceId != null">
+				#{resourceId,jdbcType=INTEGER},
 			</if>
 			<if test="downloadtime != null">
-				#{downloadtime,jdbcType=VARCHAR},
+				#{downloadTime,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.Download">
 		update download
 		<set>
-			<if test="userid != null">
-				userId = #{userid,jdbcType=INTEGER},
+			<if test="userId != null">
+				userId = #{userId,jdbcType=INTEGER},
 			</if>
-			<if test="resourceid != null">
-				resourceId = #{resourceid,jdbcType=INTEGER},
+			<if test="resourceId != null">
+				resourceId = #{resourceId,jdbcType=INTEGER},
 			</if>
 			<if test="downloadtime != null">
-				downloadTime = #{downloadtime,jdbcType=VARCHAR},
+				downloadTime = #{downloadTime,jdbcType=VARCHAR},
 			</if>
 		</set>
-		where downloadId = #{downloadid,jdbcType=INTEGER}
+		where downloadId = #{downloadId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.cloud.model.Download">
 		update download
-		set userId = #{userid,jdbcType=INTEGER},
-		resourceId = #{resourceid,jdbcType=INTEGER},
-		downloadTime = #{downloadtime,jdbcType=VARCHAR}
-		where downloadId = #{downloadid,jdbcType=INTEGER}
+		set userId = #{userId,jdbcType=INTEGER},
+		resourceId = #{resourceId,jdbcType=INTEGER},
+		downloadTime = #{downloadTime,jdbcType=VARCHAR}
+		where downloadId = #{downloadId,jdbcType=INTEGER}
 	</update>
 </mapper>
