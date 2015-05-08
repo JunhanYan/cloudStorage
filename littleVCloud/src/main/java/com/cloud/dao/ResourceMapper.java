@@ -5,7 +5,7 @@ import java.util.List;
 import com.cloud.model.Resource;
 
 public interface ResourceMapper {
-    int deleteByPrimaryKey(Integer resourceid);
+    int deleteByPrimaryKey(Integer resourceId);
 
     int insert(Resource record);
 
@@ -17,9 +17,9 @@ public interface ResourceMapper {
 
     int updateByPrimaryKey(Resource record);
     
-    public List<Resource> getResourcesByName(String resourcename);
-	public List<Resource> getResourcesByUploader(int uploaderid);
-	public List<Resource> getResourcesByType(String resourcetype);
-	public List<Resource> getSharedResource(int uploaderid);
+    public List<Resource> getResourcesByName(String resourceName);
+	public List<Resource> getResourcesByUploader(int uploaderId);
+	public List<Resource> getResourcesByType(String resourceType);
+	public List<Resource> getSharedResource(int uploaderId);
 	public List<Resource> getAllResources();
 }

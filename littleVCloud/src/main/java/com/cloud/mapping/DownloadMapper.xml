@@ -49,21 +49,21 @@
 	<insert id="insertSelective" parameterType="com.cloud.model.Download">
 		insert into download
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="downloadid != null">
+			<if test="downloadId != null">
 				downloadId,
 			</if>
-			<if test="userid != null">
+			<if test="userId != null">
 				userId,
 			</if>
-			<if test="resourceid != null">
+			<if test="resourceId != null">
 				resourceId,
 			</if>
-			<if test="downloadtime != null">
+			<if test="downloadTime != null">
 				downloadTime,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="downloadid != null">
+			<if test="downloadId != null">
 				#{downloadId,jdbcType=INTEGER},
 			</if>
 			<if test="userId != null">
@@ -72,7 +72,7 @@
 			<if test="resourceId != null">
 				#{resourceId,jdbcType=INTEGER},
 			</if>
-			<if test="downloadtime != null">
+			<if test="downloadTime != null">
 				#{downloadTime,jdbcType=VARCHAR},
 			</if>
 		</trim>
@@ -86,7 +86,7 @@
 			<if test="resourceId != null">
 				resourceId = #{resourceId,jdbcType=INTEGER},
 			</if>
-			<if test="downloadtime != null">
+			<if test="downloadTime != null">
 				downloadTime = #{downloadTime,jdbcType=VARCHAR},
 			</if>
 		</set>

@@ -1,4 +1,4 @@
-package com.cloud.test;
+/*package com.cloud.test;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -132,3 +132,4 @@ public class TestTeamProgram {
 			logger.info(teamService.deleteUserFromTeam(1, 3));
 	}	
 }
+	*/

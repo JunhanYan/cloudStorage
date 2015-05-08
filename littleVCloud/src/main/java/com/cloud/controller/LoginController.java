@@ -4,10 +4,10 @@ package com.cloud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cloud.service.UserServiceI;
 import com.cloud.model.User;
@@ -28,13 +28,15 @@ public class LoginController {
  
 	//返回json @ResponseBody，直接把json返回view
 	//         @RequestBody 解析view发来的json 
-	@RequestMapping(value="/login")
-	public @ResponseBody User login(String userAccount,String password) {
-		User user = userService.login(userAccount, password);
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public @ResponseBody User login(@RequestBody User reqUser) {
+		User user = userService.login(reqUser.getUserAccount(), reqUser.getPassword());
 		if(user!=null)
 			return user;
 		else
 			return null;
+		/*System.out.println("==========================="+user.getUserAccount()+user.getPassword()+user.getUserName());
+		return null;*/
 	}
 	//先不实现，如有需要新建个token表
 	@RequestMapping(value="/loginByToken")

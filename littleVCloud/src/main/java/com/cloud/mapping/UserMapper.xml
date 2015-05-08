@@ -103,30 +103,30 @@
 	<insert id="insertSelective" parameterType="com.cloud.model.User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="userid != null">
+			<if test="userId != null">
 				userId,
 			</if>
-			<if test="username != null">
+			<if test="userName != null">
 				userName,
 			</if>
 			<if test="password != null">
 				password,
 			</if>
-			<if test="useraccount != null">
+			<if test="userAccount != null">
 				userAccount,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="userid != null">
+			<if test="userId != null">
 				#{userId,jdbcType=INTEGER},
 			</if>
-			<if test="username != null">
+			<if test="userName != null">
 				#{userName,jdbcType=VARCHAR},
 			</if>
 			<if test="password != null">
 				#{password,jdbcType=VARCHAR},
 			</if>
-			<if test="useraccount != null">
+			<if test="userAccount != null">
 				#{userAccount,jdbcType=VARCHAR},
 			</if>
 		</trim>
@@ -134,13 +134,13 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.User">
 		update user
 		<set>
-			<if test="username != null">
+			<if test="userName != null">
 				userName = #{userName,jdbcType=VARCHAR},
 			</if>
 			<if test="password != null">
 				password = #{password,jdbcType=VARCHAR},
 			</if>
-			<if test="useraccount != null">
+			<if test="userAccount != null">
 				userAccount = #{userAccount,jdbcType=VARCHAR},
 			</if>
 		</set>

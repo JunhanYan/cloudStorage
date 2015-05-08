@@ -1,4 +1,4 @@
-package com.cloud.test;
+/*package com.cloud.test;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -158,3 +158,4 @@ public class TestUserProgram {
 			logger.info(userService.modifyUser(u));
 	}	
 }
+	*/

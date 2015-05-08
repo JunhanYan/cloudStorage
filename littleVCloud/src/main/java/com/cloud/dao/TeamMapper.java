@@ -8,13 +8,13 @@ import com.cloud.model.Team;
 import com.cloud.model.User;
 
 public interface TeamMapper {
-    int deleteByPrimaryKey(Integer teamid);
+    int deleteByPrimaryKey(Integer teamId);
 
     int insert(Team record);
 
     int insertSelective(Team record);
 
-    Team selectByPrimaryKey(Integer teamid);
+    Team selectByPrimaryKey(Integer teamId);
 
     int updateByPrimaryKeySelective(Team record);
 
@@ -22,11 +22,11 @@ public interface TeamMapper {
     
     public List<Team> getTeamsByName(String teamname);
 	
-	public List<User> getTeamMembers(int teamid); //此处返回的是带password的，如有需要进行更改
-	public Team getTeamAndMembers(int teamid);//此处返回的也是带password的，如有需要进行更改
+	public List<User> getTeamMembers(int teamId); //此处返回的是带password的，如有需要进行更改
+	public Team getTeamAndMembers(int teamId);//此处返回的也是带password的，如有需要进行更改
 	
-	public int addUserToTeam(@Param("userid") int userid,@Param("teamid") int teamid);
-	public int deleteUserFromTeam(@Param("userid") int userid,@Param("teamid") int teamid);
+	public int addUserToTeam(@Param("userId") int userId,@Param("teamId") int teamId);
+	public int deleteUserFromTeam(@Param("userId") int userId,@Param("teamId") int teamId);
 	
     public List<Team> getAllTeams();
 }

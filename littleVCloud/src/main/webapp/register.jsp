@@ -3,32 +3,58 @@
 <!DOCTYPE html >
 <html>
 <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js">
+</script>
+<script>
+
+
+function a(){
+    $.ajax({
+            url: 'http://localhost:8080/littleVCloud/userController/register.do',
+            dataType: 'json',
+            type: 'POST',
+            contentType:'application/json;charset=UTF-8',
+            data: JSON.stringify({
+            	userName : $('#userName').val(),
+            	password : $('#password').val(),
+            	userAccount: $('#userAccount').val()           	
+            })
+           	})
+            .success(function (data, status, headers, config) {
+            	
+            	for(var i = 0;i<data.length;i++){
+            		 $('.user').append('<li>'+data[i].userName+'</li>');
+            	}
+            })
+            .error(function (data, status, headers, config) {
+                alert("aaaa");
+            });
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<form name="registerform" action="userController/register.do" method="post">
+<form>
 <table width="300" border="1">
     <tr>
         <td colspan="2">登录窗口</td>
     </tr>
     <tr>
             <td>用户名</td>
-            <td><input type="text" name="userName" size="10"></td>
+            <td><input type="text" id="userName" size="10"></td>
     </tr>
     <tr>
             <td>密码</td>
-            <td><input type="password" name="password" size="10"></td>
+            <td><input type="password" id="password" size="10"></td>
 	 </tr>
  	<tr>
             <td>用户帐号</td>
-            <td><input type="text" name="userAccount" size="10"></td>
-    </tr>
-	 <tr>
-        <td colspan="2"><input type="submit" name="submit"
-            value="注册"></td>
+            <td><input type="text" id="userAccount" size="10"></td>
     </tr>
 </table>
 </form>
+ <button id="button_register" onclick ="a()">注册</button> 
+<div class = 'user'></div>
 </body>
 </html>

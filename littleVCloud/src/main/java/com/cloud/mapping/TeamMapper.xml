@@ -59,12 +59,12 @@
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from team
-		where teamId = #{teamid,jdbcType=INTEGER}
+		where teamId = #{teamId,jdbcType=INTEGER}
 	</delete>
 	
 	<delete id="deleteUserFromTeam">
 		delete from user_team
-		where teamId = #{teamId,jdbcType=INTEGER} and userId= #{userid,jdbcType=INTEGER}
+		where teamId = #{teamId,jdbcType=INTEGER} and userId= #{userId,jdbcType=INTEGER}
 	</delete>
 	
 	<insert id="insert" parameterType="com.cloud.model.Team">
@@ -80,18 +80,18 @@
 	<insert id="insertSelective" parameterType="com.cloud.model.Team">
 		insert into team
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="teamid != null">
+			<if test="teamId != null">
 				teamId,
 			</if>
-			<if test="teamname != null">
+			<if test="teamName != null">
 				teamName,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="teamid != null">
+			<if test="teamId != null">
 				#{teamId,jdbcType=INTEGER},
 			</if>
-			<if test="teamname != null">
+			<if test="teamName != null">
 				#{teamName,jdbcType=VARCHAR},
 			</if>
 		</trim>
@@ -99,7 +99,7 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.Team">
 		update team
 		<set>
-			<if test="teamname != null">
+			<if test="teamName != null">
 				teamName = #{teamName,jdbcType=VARCHAR},
 			</if>
 		</set>

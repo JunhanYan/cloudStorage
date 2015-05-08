@@ -1,4 +1,4 @@
-package com.cloud.test;
+/*package com.cloud.test;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -84,7 +84,7 @@ public class TestFollowProgram {
 	
 	
 	@Test
-	public void testInsertTeam() {
+	public void addFollow() {
 		Follow follow =new Follow();
 		follow.setTarget(1);
 		follow.setWho(2);
@@ -94,7 +94,8 @@ public class TestFollowProgram {
 	
 	
 	@Test
-	public void testDeleteUserFromTeam() {		
+	public void deleteFollow() {		
 			logger.info(followService.deleteFollow(1, 2));
 	}	
 }
+*/

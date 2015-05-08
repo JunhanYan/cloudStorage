@@ -1,4 +1,4 @@
-package com.cloud.test;
+/*package com.cloud.test;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -133,5 +133,6 @@ public class TestResourceProgram {
 		Resource resource = resourceService.getResourceById(3);
 		resource.setStatus(0);
 			logger.info(resourceService.modifyResource(resource));
-	}	
+	}
 }
+*/

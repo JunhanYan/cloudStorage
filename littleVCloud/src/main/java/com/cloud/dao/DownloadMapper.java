@@ -7,13 +7,13 @@ import com.cloud.model.Resource;
 import com.cloud.model.User;
 
 public interface DownloadMapper {
-    int deleteByPrimaryKey(Integer downloadid);
+    int deleteByPrimaryKey(Integer downloadId);
 
     int insert(Download record);
 
     int insertSelective(Download record);
 
-    Download selectByPrimaryKey(Integer downloadid);
+    Download selectByPrimaryKey(Integer downloadId);
 
     int updateByPrimaryKeySelective(Download record);
 

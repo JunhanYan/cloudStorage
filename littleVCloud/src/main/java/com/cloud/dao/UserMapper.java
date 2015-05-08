@@ -9,7 +9,7 @@ import com.cloud.model.User;
 import java.util.List;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer userid);
+    int deleteByPrimaryKey(Integer userId);
 
     int insert(User record);
 
@@ -25,11 +25,11 @@ public interface UserMapper {
    
     User verifyAccountAvaliable(String userAccount);
     
-    List<Team> getUserTeams(int userid);
-    List<Role> getUserRoles(int userid);
+    List<Team> getUserTeams(int userId);
+    List<Role> getUserRoles(int userId);
     
-    User getUserAndTeams(int userid);
-    User getUserAndRoles(int userid);
+    User getUserAndTeams(int userId);
+    User getUserAndRoles(int userId);
     
     List<User> getAllUsers();
 }

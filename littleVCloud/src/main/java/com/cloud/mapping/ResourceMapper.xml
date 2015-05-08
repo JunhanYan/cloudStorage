@@ -87,10 +87,10 @@
 	<insert id="insertSelective" parameterType="com.cloud.model.Resource">
 		insert into resource
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="resourceid != null">
+			<if test="resourceId != null">
 				resourceId,
 			</if>
-			<if test="resourcename != null">
+			<if test="resourceName != null">
 				resourceName,
 			</if>
 			<if test="type != null">
@@ -102,13 +102,13 @@
 			<if test="description != null">
 				description,
 			</if>
-			<if test="uploaderid != null">
+			<if test="uploaderId != null">
 				uploaderId,
 			</if>
-			<if test="uploadtime != null">
+			<if test="uploadTime != null">
 				uploadTime,
 			</if>
-			<if test="downloadtimes != null">
+			<if test="downloadTimes != null">
 				downloadTimes,
 			</if>
 			<if test="status != null">
@@ -125,10 +125,10 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="resourceid != null">
+			<if test="resourceId != null">
 				#{resourceiId,jdbcType=INTEGER},
 			</if>
-			<if test="resourcename != null">
+			<if test="resourceName != null">
 				#{resourceName,jdbcType=VARCHAR},
 			</if>
 			<if test="type != null">
@@ -140,13 +140,13 @@
 			<if test="description != null">
 				#{description,jdbcType=VARCHAR},
 			</if>
-			<if test="uploaderid != null">
+			<if test="uploaderId != null">
 				#{uploaderId,jdbcType=INTEGER},
 			</if>
-			<if test="uploadtime != null">
+			<if test="uploadTime != null">
 				#{uploadTime,jdbcType=VARCHAR},
 			</if>
-			<if test="downloadtimes != null">
+			<if test="downloadTimes != null">
 				#{downloadTimes,jdbcType=INTEGER},
 			</if>
 			<if test="status != null">
@@ -166,7 +166,7 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.Resource">
 		update resource
 		<set>
-			<if test="resourcename != null">
+			<if test="resourceName != null">
 				resourceName = #{resourceName,jdbcType=VARCHAR},
 			</if>
 			<if test="type != null">
@@ -178,13 +178,13 @@
 			<if test="description != null">
 				description = #{description,jdbcType=VARCHAR},
 			</if>
-			<if test="uploaderid != null">
+			<if test="uploaderId != null">
 				uploaderId = #{uploaderId,jdbcType=INTEGER},
 			</if>
-			<if test="uploadtime != null">
+			<if test="uploadTime != null">
 				uploadTime = #{uploadTime,jdbcType=VARCHAR},
 			</if>
-			<if test="downloadtimes != null">
+			<if test="downloadTimes != null">
 				downloadTimes = #{downloadTimes,jdbcType=INTEGER},
 			</if>
 			<if test="status != null">

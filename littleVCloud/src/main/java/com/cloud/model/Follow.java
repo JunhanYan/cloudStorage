@@ -1,6 +1,6 @@
 package com.cloud.model;
 
-import java.util.List;
+
 
 public class Follow {
     private Integer followId;
@@ -15,8 +15,8 @@ public class Follow {
         return followId;
     }
 
-    public void setFollowId(Integer followid) {
-        this.followId = followid;
+    public void setFollowId(Integer followId) {
+        this.followId = followId;
     }
 
     public Integer getWho() {
