@@ -62,4 +62,13 @@
         <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 	
+	<servlet>
+         <servlet-name>DownloadServlet</servlet-name>
+          <servlet-class>com.cloud.download.DownloadServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+          <servlet-name>DownloadServlet</servlet-name>
+          <url-pattern>/download.do</url-pattern>
+  	</servlet-mapping>
+	
 </web-app>
