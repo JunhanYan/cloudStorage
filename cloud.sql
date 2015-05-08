@@ -26,7 +26,7 @@ CREATE TABLE `download` (
   `downloadId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL,
-  `downloadTime` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `downloadTime` varchar(50) NOT NULL,
   PRIMARY KEY (`downloadId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -75,12 +75,12 @@ DROP TABLE IF EXISTS `resource`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resource` (
   `resourceId` int(11) NOT NULL AUTO_INCREMENT,
-  `resourceName` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `type` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `path` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `description` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `resourceName` varchar(50) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `path` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `uploaderId` int(11) NOT NULL,
-  `uploadTime` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `uploadTime` varchar(50) NOT NULL,
   `downloadTimes` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   `complete` int(11) DEFAULT '0',
@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
   `roleId` int(11) NOT NULL AUTO_INCREMENT,
-  `roleName` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `roleName` varchar(50) NOT NULL,
   PRIMARY KEY (`roleId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS `team`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `team` (
   `teamId` int(11) NOT NULL AUTO_INCREMENT,
-  `teamName` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `teamName` varchar(50) NOT NULL,
   PRIMARY KEY (`teamId`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -157,9 +157,9 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `password` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `userAccount` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `userName` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `userAccount` varchar(50) NOT NULL,
   PRIMARY KEY (`userId`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -233,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-08 16:34:22
+-- Dump completed on 2015-05-08 16:51:46
