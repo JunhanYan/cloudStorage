@@ -19,5 +19,5 @@ public interface UserServiceI {
 	public User getUserAndRoles(int userId);
 	public User getUserAndTeams(int userId);
 	public User login(String userAccount, String password);
-	public boolean verifyAccountAvaliable(String userAccount);
+	public User verifyAccountAvaliable(String userAccount);
 }

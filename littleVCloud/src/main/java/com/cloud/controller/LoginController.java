@@ -60,19 +60,19 @@ public class LoginController {
 		}
 		return mav;
 	}*/
-	@RequestMapping(value="/verify")
-	public @ResponseBody String verify(String userAccount,String password){
-		String tip;
-		if("".equals(userAccount.trim())||userAccount == null)
-		{
-			tip = "用户名为空";
-		}else if("".equals(password.trim())||password == null){
-			tip ="密码为空";
-		}else if (userService.verifyAccountAvaliable(userAccount.trim())){
-			tip = "用户名不存在";
-		}else{
-			tip = "OK";
-		}
-		return tip;
-	}
+//	@RequestMapping(value="/verify")
+//	public @ResponseBody String verify(String userAccount,String password){
+//		String tip;
+//		if("".equals(userAccount.trim())||userAccount == null)
+//		{
+//			tip = "用户名为空";
+//		}else if("".equals(password.trim())||password == null){
+//			tip ="密码为空";
+//		}else if (userService.verifyAccountAvaliable(userAccount.trim())){
+//			tip = "用户名不存在";
+//		}else{
+//			tip = "OK";
+//		}
+//		return tip;
+//	}
 }

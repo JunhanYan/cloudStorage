@@ -2,6 +2,8 @@ package com.cloud.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cloud.model.Resource;
 
 public interface ResourceMapper {
@@ -19,7 +21,10 @@ public interface ResourceMapper {
     
     public List<Resource> getResourcesByName(String resourceName);
 	public List<Resource> getResourcesByUploader(int uploaderId);
-	public List<Resource> getResourcesByType(String resourceType);
+	public List<Resource> getResourcesByType(@Param("resourceType") String resourceType,@Param("uploaderId") int uploaderId);
 	public List<Resource> getSharedResource(int uploaderId);
+	public List<Resource> getResourcesByFolder(int folderId);
 	public List<Resource> getAllResources();
+	public List<Resource> getTrashResource(int uploaderId);
+	
 }

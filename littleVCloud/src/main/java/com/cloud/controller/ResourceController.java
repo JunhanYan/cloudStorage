@@ -51,7 +51,7 @@ public class ResourceController {
 	}
 	
 	@RequestMapping(value="/deleteResource/{resourceId}",method=RequestMethod.DELETE)
-	public @ResponseBody Map<String, String> deleteResource( int resourceId) {
+	public @ResponseBody Map<String, String> deleteResource(@PathVariable int resourceId) {
 		Map<String,String> map = new HashMap<String,String >();
 		if(resourceService.deleteResource(resourceId)>0)
 			{
@@ -85,14 +85,24 @@ public class ResourceController {
 		return resourceService.getResourcesByName(resourceName);		
 	}
 	
-	@RequestMapping("/getResourcesByType/{resourceType}")
-	public @ResponseBody List<Resource> getResourcesByType(@PathVariable String resourceType) {
-		return resourceService.getResourcesByType(resourceType);		
+	@RequestMapping("/getResourcesByType/{resourceType}-{uploaderId}")
+	public @ResponseBody List<Resource> getResourcesByType(@PathVariable String resourceType,@PathVariable int uploaderId) {
+		return resourceService.getResourcesByType(resourceType,uploaderId);		
 	}
 	
 	@RequestMapping("/getSharedResource/{uploaderId}")
 	public @ResponseBody List<Resource> getSharedResource(@PathVariable int uploaderId) {
 		return resourceService.getSharedResource(uploaderId);		
+	}
+	
+	@RequestMapping("/getTrashResource/{uploaderId}")
+	public @ResponseBody List<Resource> getTrashResource(@PathVariable int uploaderId) {
+		return resourceService.getTrashResource(uploaderId);		
+	}
+	
+	@RequestMapping("/getResourcesByFolder/{folderId}")
+	public @ResponseBody List<Resource> getResourcesByFolder(@PathVariable int folderId) {
+		return resourceService.getResourcesByFolder(folderId);		
 	}
 	
 }

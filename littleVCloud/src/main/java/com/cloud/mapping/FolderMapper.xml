@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.dao.FolderMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.model.Folder" >
+    <id column="folderId" property="folderId" jdbcType="INTEGER" />
+    <result column="folderName" property="folderName" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentId" jdbcType="INTEGER" />
+    <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    folderId, folderName, parentId, userId, date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from folder
+    where folderId = #{folderId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="getFolderByParentAndUser" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		 from folder
+    where parentId = #{parentId,jdbcType=INTEGER} and  userId = #{userId,jdbcType=INTEGER}
+	</select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from folder
+    where folderId = #{folderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.model.Folder" >
+    insert into folder (folderId, folderName, parentId, 
+      userId)
+    values (#{folderId,jdbcType=INTEGER}, #{folderName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.model.Folder" >
+    insert into folder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="folderId != null" >
+        folderId,
+      </if>
+      <if test="folderName != null" >
+        folderName,
+      </if>
+      <if test="parentId != null" >
+        parentId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+       <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="folderId != null" >
+        #{folderId,jdbcType=INTEGER},
+      </if>
+      <if test="folderName != null" >
+        #{folderName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+       <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.Folder" >
+    update folder
+    <set >
+      <if test="folderName != null" >
+        folderName = #{folderName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parentId = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where folderId = #{folderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.model.Folder" >
+    update folder
+    set folderName = #{folderName,jdbcType=VARCHAR},
+      parentId = #{parentId,jdbcType=INTEGER},
+      userId = #{userId,jdbcType=INTEGER}
+    where folderId = #{folderId,jdbcType=INTEGER}
+  </update>
+</mapper>

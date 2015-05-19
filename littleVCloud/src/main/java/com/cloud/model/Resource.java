@@ -19,7 +19,7 @@ public class Resource {
 
     private Integer status;
     
-    private int complete;
+    private int folderId;
     
     private int process;
 
@@ -33,12 +33,12 @@ public class Resource {
 		this.size = size;
 	}
 
-	public int getComplete() {
-		return complete;
+	public int getfFlderId() {
+		return folderId;
 	}
 
-	public void setComplete(int complete) {
-		this.complete = complete;
+	public void setFolderId(int folderId) {
+		this.folderId = folderId;
 	}
 
 	public int getProcess() {

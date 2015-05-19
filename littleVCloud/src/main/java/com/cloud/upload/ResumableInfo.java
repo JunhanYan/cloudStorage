@@ -61,6 +61,7 @@ public class ResumableInfo {
         File file = new File(resumableFilePath);
         String new_path = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - ".temp".length());
         file.renameTo(new File(new_path));
+        resumableFilePath = new_path;
         return true;
     }
 }

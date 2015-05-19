@@ -1,8 +1,14 @@
 package com.cloud.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
+
+
 
 
 
@@ -14,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.service.FolderServiceI;
 import com.cloud.service.UserServiceI;
-
+import com.cloud.model.Folder;
 import com.cloud.model.Role;
 import com.cloud.model.Team;
 import com.cloud.model.User;
@@ -27,8 +34,16 @@ import com.cloud.model.User;
 public class UserController {
 	
 	private UserServiceI userService;
-
+	private FolderServiceI folderService;
 	
+	public FolderServiceI getFolderService() {
+		return folderService;
+	}
+	@Autowired
+	public void setFolderService(FolderServiceI folderService) {
+		this.folderService = folderService;
+	}
+
 	public UserServiceI getUserService() {
 		return userService;
 	}
@@ -42,15 +57,23 @@ public class UserController {
 	public @ResponseBody User register(@RequestBody User user) {
 		
 		if(userService.addUser(user)>0)
+		{
+			user=userService.verifyAccountAvaliable(user.getUserAccount());
+			Folder folder = new Folder();
+			folder.setfolderName("home");
+			folder.setparentId(0);
+			folder.setuserId(user.getUserId());
+			folder.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			folderService.newFolder(folder);
 			return user;
-		else
+		}else
 			return null;
 	}
 	
 	@RequestMapping("/verifyUserAccount/{userAccount}")
 	public @ResponseBody Map<String, String> verifyUserAccount(@PathVariable String userAccount) {
 		Map<String,String> map = new HashMap<String,String >();
-		if(userService.verifyAccountAvaliable(userAccount))
+		if(userService.verifyAccountAvaliable(userAccount)!=null)
 			{
 				map.put("result", "avaliable");
 			}else{

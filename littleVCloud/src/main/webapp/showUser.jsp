@@ -11,9 +11,7 @@
             url: 'http://localhost:8080/littleVCloud/userController/getUserAndTeams/1.do',
             dataType: 'json',
             method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }})
+            contentType:'application/json;charset=UTF-8'})
             .success(function (data, status, headers, config) {
             	//alert("数据：" + data + "\n状态：" + status);
             	/* for(var i = 0;i<data.length;i++){

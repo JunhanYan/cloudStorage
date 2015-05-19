@@ -12,14 +12,14 @@
 		<result column="downloadTimes" property="downloadTimes"
 			jdbcType="INTEGER" />
 		<result column="status" property="status" jdbcType="INTEGER" />
-		<result column="complete" property="complete" jdbcType="INTEGER" />
+		<result column="folderId" property="folderId" jdbcType="INTEGER" />
 		<result column="process" property="process" jdbcType="INTEGER" />
 		<result column="size" property="size" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		resourceId, resourceName, type, path, description, uploaderId, uploadTime,
 		downloadTimes,
-		status, complete, process, size
+		status, folderId, process, size
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -48,15 +48,14 @@
 		select
 		<include refid="Base_Column_List" />
 		from resource
-		where resourceName = #{resourceName,jdbcType=VARCHAR}
+		where status = 1 and resourceName = #{resourceName,jdbcType=VARCHAR}
 	</select>
 	
-	<select id="getResourcesByType" resultMap="BaseResultMap"
-		parameterType="String">
+	<select id="getResourcesByType" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from resource
-		where type = #{resourceType,jdbcType=VARCHAR}
+		where type = #{resourceType,jdbcType=VARCHAR} and uploaderId = #{uploaderId,jdbcType=INTEGER}
 	</select>
 	
 	<select id="getSharedResource" resultMap="BaseResultMap"
@@ -65,6 +64,22 @@
 		<include refid="Base_Column_List" />
 		from resource
 		where status = 1 and uploaderId = #{uploaderId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getTrashResource" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where status = 2 and uploaderId = #{uploaderId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getResourcesByFolder" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where folderId = #{folderId,jdbcType=INTEGER}
 	</select>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -80,7 +95,7 @@
 		#{type,jdbcType=VARCHAR},
 		#{path,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{uploaderId,jdbcType=INTEGER},
 		#{uploadTime,jdbcType=VARCHAR}, #{downloadTimes,jdbcType=INTEGER},
-		#{status,jdbcType=INTEGER}, #{complete,jdbcType=INTEGER},#{process,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER}, #{folderId,jdbcType=INTEGER},#{process,jdbcType=INTEGER},
 		#{size,jdbcType=INTEGER}
 		)
 	</insert>
@@ -114,8 +129,8 @@
 			<if test="status != null">
 				status,
 			</if>
-			<if test="complete != null">
-				complete,
+			<if test="folderId != null">
+				folderId,
 			</if>
 			<if test="process != null">
 				process,
@@ -152,8 +167,8 @@
 			<if test="status != null">
 				#{status,jdbcType=INTEGER},
 			</if>
-			<if test="complete != null">
-				#{complete,jdbcType=INTEGER},
+			<if test="folderId != null">
+				#{folderId,jdbcType=INTEGER},
 			</if>
 			<if test="process != null">
 				#{process,jdbcType=INTEGER},
@@ -190,8 +205,8 @@
 			<if test="status != null">
 				status = #{status,jdbcType=INTEGER},
 			</if>
-			<if test="complete != null">
-				complete = #{complete,jdbcType=INTEGER},
+			<if test="folderId != null">
+				folderId = #{folderId,jdbcType=INTEGER},
 			</if>
 			<if test="process != null">
 				process = #{process,jdbcType=INTEGER},
@@ -212,7 +227,7 @@
 		uploadTime = #{uploadTime,jdbcType=VARCHAR},
 		downloadTimes = #{downloadTimes,jdbcType=INTEGER},
 		status = #{status,jdbcType=INTEGER},
-		complete = #{complete,jdbcType=INTEGER},
+		folderId = #{folderId,jdbcType=INTEGER},
 		process = #{process,jdbcType=INTEGER},
 		size = #{size,jdbcType=INTEGER}
 		where resourceId = #{resourceId,jdbcType=INTEGER}

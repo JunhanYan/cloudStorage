@@ -30,6 +30,5 @@ public interface UserMapper {
     
     User getUserAndTeams(int userId);
     User getUserAndRoles(int userId);
-    
     List<User> getAllUsers();
 }

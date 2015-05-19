@@ -74,10 +74,8 @@ public class UserServiceImpl implements UserServiceI {
 		return userMapper.login(userAccount, password);
 	}
 	@Override
-	public boolean verifyAccountAvaliable(String userAccount) { 
-		if(userMapper.verifyAccountAvaliable(userAccount)!=null){
-			return false;
-		}
-		return true;
+	public User verifyAccountAvaliable(String userAccount) { 
+		return userMapper.verifyAccountAvaliable(userAccount);
+			
 	}
 }

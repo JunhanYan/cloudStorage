@@ -37,8 +37,8 @@ public class ResourceServiceImpl implements ResourceServiceI {
 		return resourceMapper.getResourcesByName(resourceName);
 	}
 	@Override
-	public List<Resource> getResourcesByType(String resourceType) {
-		return resourceMapper.getResourcesByType(resourceType);
+	public List<Resource> getResourcesByType(String resourceType,int uploaderId) {
+		return resourceMapper.getResourcesByType(resourceType,uploaderId);
 	}
 	@Override
 	public List<Resource> getResourcesByUploader(int uploaderId) {
@@ -64,6 +64,10 @@ public class ResourceServiceImpl implements ResourceServiceI {
 		return resourceMapper.getSharedResource(uploaderId);
 	}
 	@Override
+	public List<Resource> getTrashResource(int uploaderId) {
+		return resourceMapper.getTrashResource(uploaderId);
+	}
+	@Override
 	public boolean isCompleted(int resourceId) {
 		// TODO Auto-generated method stub
 		return false;
@@ -79,5 +83,9 @@ public class ResourceServiceImpl implements ResourceServiceI {
 	@Override
 	public List<Resource> getAllResources() {
 		return resourceMapper.getAllResources();
+	}
+	@Override
+	public List<Resource> getResourcesByFolder(int folderId) {
+		return resourceMapper.getResourcesByFolder(folderId);
 	}
 }
