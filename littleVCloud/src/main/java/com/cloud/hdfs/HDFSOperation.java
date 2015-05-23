@@ -1,15 +1,20 @@
 package com.cloud.hdfs;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
+
+import javax.servlet.http.HttpServletResponse;
 public class HDFSOperation {
 	
 	 private Configuration conf =null;
-	// private static final String HADOOP_URL="hdfs://localhost:9000";
+	 private static final String HADOOP_URL="hdfs://172.31.34.149:9000";
 	    public HDFSOperation(){
 	        conf =new Configuration();
-	        conf.addResource(new Path("/home/junhan/hadoop/hadoop-2.6.0/etc/hadoop/core-site.xml"));
+	       // conf.addResource(new Path("/home/junhan/hadoop/hadoop-2.6.0/etc/hadoop/core-site.xml"));
 	    }
 	    public HDFSOperation(Configuration conf){
 	        this.conf =conf;
@@ -23,7 +28,7 @@ public class HDFSOperation {
 	        }
 	        try {
 	            FileSystem localFS =FileSystem.getLocal(conf);
-	            FileSystem hadoopFS =FileSystem.get(conf);
+	            FileSystem hadoopFS =FileSystem.get(URI.create(HADOOP_URL),conf);
 	            
 	            Path hadPath=new Path(path);
 	            FSDataOutputStream fsOut=hadoopFS.create(new Path(path+"/"+file.getName()));
@@ -66,7 +71,7 @@ public class HDFSOperation {
 	    public boolean downloadFile(String hadfile,String localPath){
 	        try {
 	            FileSystem localFS =FileSystem.getLocal(conf);
-	            FileSystem hadoopFS =FileSystem.get(conf);
+	            FileSystem hadoopFS =FileSystem.get(URI.create(HADOOP_URL),conf);
 	            Path hadPath=new Path(hadfile);
 	            FSDataOutputStream fsOut=localFS.create(new Path(localPath+"/"+hadPath.getName()));
 	            FSDataInputStream fsIn=hadoopFS.open(hadPath);
@@ -84,5 +89,45 @@ public class HDFSOperation {
 	        return false;
 	    }
 	
+	    
+	    public boolean downloadFileToWeb(String fileName,HttpServletResponse resp){
+	        try {
+	           // FileSystem localFS =FileSystem.getLocal(conf);
+	            FileSystem hadoopFS =FileSystem.get(URI.create(HADOOP_URL),conf);
+	            Path hadPath=new Path("/upload/"+fileName);
+	            FSDataInputStream fsIn=hadoopFS.open(hadPath);
+	            
+	            FileStatus fileStatus = hadoopFS.getFileStatus(new Path(HADOOP_URL+hadPath)); 
+	            
+	            OutputStream out = resp.getOutputStream();
+	            
+	            resp.reset();
+	            
+	            resp.setHeader("Content-Disposition", "attachment; filename=" +fileName);
 
+	            long fileLength =fileStatus.getLen();
+	            String length = String.valueOf(fileLength);  
+
+	            resp.setHeader("Content-Length", length);  
+	        
+	            resp.setContentType("application/octet-stream");
+	            
+	            
+	           
+	           // FSDataOutputStream fsOut=localFS.create(new Path(localPath+"/"+hadPath.getName()));
+	           
+	            
+	            byte[] buf =new byte[1024];
+	            int readbytes=0;
+	            while ((readbytes=fsIn.read(buf))>0){
+	                out.write(buf,0,readbytes);
+	            }
+	            fsIn.close();
+	            out.close();
+	            return true;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        return false;
+	    }
 }

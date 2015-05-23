@@ -20,6 +20,7 @@ public interface ResourceMapper {
     int updateByPrimaryKey(Resource record);
     
     public List<Resource> getResourcesByName(String resourceName);
+    public List<Resource> getMyResourcesByName(@Param("resourceName") String resourceType,@Param("uploaderId") int uploaderId);
 	public List<Resource> getResourcesByUploader(int uploaderId);
 	public List<Resource> getResourcesByType(@Param("resourceType") String resourceType,@Param("uploaderId") int uploaderId);
 	public List<Resource> getSharedResource(int uploaderId);

@@ -48,14 +48,21 @@
 		select
 		<include refid="Base_Column_List" />
 		from resource
-		where status = 1 and resourceName = #{resourceName,jdbcType=VARCHAR}
+		where status = 1 and resourceName like CONCAT('%',#{resourceName,jdbcType=VARCHAR},'%' )
+	</select>
+	
+	<select id="getMyResourcesByName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where status != 2 and resourceName like CONCAT('%',#{resourceName,jdbcType=VARCHAR},'%' ) and uploaderId = #{uploaderId,jdbcType=INTEGER}
 	</select>
 	
 	<select id="getResourcesByType" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from resource
-		where type = #{resourceType,jdbcType=VARCHAR} and uploaderId = #{uploaderId,jdbcType=INTEGER}
+		where type = #{resourceType,jdbcType=VARCHAR} and uploaderId = #{uploaderId,jdbcType=INTEGER} and status !=2
 	</select>
 	
 	<select id="getSharedResource" resultMap="BaseResultMap"
@@ -79,7 +86,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from resource
-		where folderId = #{folderId,jdbcType=INTEGER}
+		where folderId = #{folderId,jdbcType=INTEGER} and status !=2
 	</select>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

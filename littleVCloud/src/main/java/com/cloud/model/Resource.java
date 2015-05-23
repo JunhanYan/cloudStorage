@@ -19,7 +19,7 @@ public class Resource {
 
     private Integer status;
     
-    private int folderId;
+    private Integer folderId;
     
     private int process;
 
@@ -33,7 +33,7 @@ public class Resource {
 		this.size = size;
 	}
 
-	public int getfFlderId() {
+	public int getFolderId() {
 		return folderId;
 	}
 

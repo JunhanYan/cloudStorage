@@ -17,7 +17,7 @@ import com.cloud.hdfs.HDFSOperation;
 
 public class UploadServlet extends HttpServlet {
 
-    public static final String UPLOAD_DIR = "/home/junhan/upload";
+    public static final String UPLOAD_DIR = "/tmp";
    // private Configuration conf =null;
    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -104,7 +104,7 @@ public class UploadServlet extends HttpServlet {
             System.out.println(info.resumableRelativePath);
             System.out.println(info.resumableTotalSize);
         	System.out.println(request.getParameter("uploaderId"));
-        	System.out.println(request.getParameter("uploadDate"));
+        	//System.out.println(request.getParameter("uploadDate"));
             HDFSOperation hdfs=new HDFSOperation();
             hdfs.sendFile("/upload",info.resumableFilePath);
             if(deleteFile(info.resumableFilePath)){

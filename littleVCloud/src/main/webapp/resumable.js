@@ -613,7 +613,7 @@
         params.push([parameterNamespace+'resumableRelativePath', encodeURIComponent($.fileObj.relativePath)].join('='));
         params.push([parameterNamespace+'resumableTotalChunks', encodeURIComponent($.fileObj.chunks.length)].join('='));
         params.push([parameterNamespace+'uploaderId', encodeURIComponent(1)].join('='));
-        params.push([parameterNamespace+'uploadDate', encodeURIComponent('2015-1-1')].join('='));
+        params.push([parameterNamespace+'folderID', encodeURIComponent(1)].join('='));
         // Append the relevant chunk and send it
         $.xhr.open('GET', $h.getTarget(params));
         $.xhr.timeout = $.getOpt('xhrTimeout');

@@ -2,6 +2,8 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cloud.model.Resource;
 
 public interface ResourceServiceI {
@@ -20,6 +22,7 @@ public interface ResourceServiceI {
 	public List<Resource> getTrashResource(int uploaderId);
 	public List<Resource> getResourcesByFolder(int folderId);
 	public List<Resource> getAllResources();
-	//目录考虑由前台js解析path建立
+	public List<Resource> getMyResourcesByName(String resourceName, int uploaderId);
+	
 
 }

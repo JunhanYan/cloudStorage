@@ -8,7 +8,7 @@
 </head>
 <body>
 <form >
-    <a href="download.do?file=a.avi">a.avi</a>
+    <a href="download.do?file=c.tar.gz">a.avi</a>
 </form>
 </body>
 </html>

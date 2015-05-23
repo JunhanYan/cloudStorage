@@ -88,4 +88,9 @@ public class ResourceServiceImpl implements ResourceServiceI {
 	public List<Resource> getResourcesByFolder(int folderId) {
 		return resourceMapper.getResourcesByFolder(folderId);
 	}
+	@Override
+	public List<Resource> getMyResourcesByName(String resourceName,
+			int uploaderId) {
+		return resourceMapper.getMyResourcesByName(resourceName, uploaderId);
+	}
 }

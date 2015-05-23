@@ -90,6 +90,11 @@ public class ResourceController {
 		return resourceService.getResourcesByType(resourceType,uploaderId);		
 	}
 	
+	@RequestMapping("/getResourcesByType/{resourceName}-{uploaderId}")
+	public @ResponseBody List<Resource> getMyResourcesByName(@PathVariable String resourceName,@PathVariable int uploaderId) {
+		return resourceService.getMyResourcesByName(resourceName, uploaderId);		
+	}
+	
 	@RequestMapping("/getSharedResource/{uploaderId}")
 	public @ResponseBody List<Resource> getSharedResource(@PathVariable int uploaderId) {
 		return resourceService.getSharedResource(uploaderId);		

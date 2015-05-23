@@ -28,7 +28,7 @@ import java.util.List;
 
 public class TestResourceProgram {
 
-	private static final Logger logger = Logger.getLogger(TestUserProgram.class);
+	private static final Logger logger = Logger.getLogger(TestResourceProgram.class);
 
 	private ResourceServiceI resourceService;
 	
@@ -57,7 +57,19 @@ public class TestResourceProgram {
 	
 	@Test
 	public void testGetResourcesByName() {
-		List<Resource> resources = resourceService.getResourcesByName("myfile");
+		List<Resource> resources = resourceService.getResourcesByName("file");
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			logger.info(mapper.writeValueAsString(resources));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testGetMyResourcesByName() {
+		List<Resource> resources = resourceService.getMyResourcesByName("file",1);
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
@@ -69,7 +81,7 @@ public class TestResourceProgram {
 	}
 	@Test
 	public void testGetResourcesByType() {
-		List<Resource> resources = resourceService.getResourcesByType("doc");
+		List<Resource> resources = resourceService.getResourcesByType("doc",1);
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
@@ -130,8 +142,9 @@ public class TestResourceProgram {
 	
 	@Test
 	public void testModifyTeam() {
-		Resource resource = resourceService.getResourceById(3);
-		resource.setStatus(0);
+		Resource resource = new Resource();
+		resource.setResourceId(2);
+		resource.setStatus(2);
 			logger.info(resourceService.modifyResource(resource));
 	}
 }
