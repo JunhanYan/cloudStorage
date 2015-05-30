@@ -4,9 +4,11 @@
 	<resultMap id="BaseResultMap" type="com.cloud.model.Team">
 		<id column="teamId" property="teamId" jdbcType="INTEGER" />
 		<result column="teamName" property="teamName" jdbcType="VARCHAR" />
+		<result column="createTime" property="createTime" jdbcType="VARCHAR" />
+		<result column="ownerId" property="ownerId" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		teamId, teamName
+		teamId, teamName, createTime, ownerId
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -21,7 +23,14 @@
 		select
 		<include refid="Base_Column_List" />
 		from team
-		where teamName = #{teamName,jdbcType=VARCHAR}
+		where teamName like CONCAT('%',#{teamName,jdbcType=VARCHAR},'%' ) 
+	</select>
+	
+	<select id="getTeamByTimeAndOwner" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from team
+		where createTime = #{createTime,jdbcType=VARCHAR} and ownerId = #{ownerId,jdbcType=INTEGER}
 	</select>
 	
 	<select id="getAllTeams" resultMap="BaseResultMap">
@@ -61,7 +70,10 @@
 		delete from team
 		where teamId = #{teamId,jdbcType=INTEGER}
 	</delete>
-	
+	<delete id="deleteUsersFromTeam" parameterType="java.lang.Integer">
+		delete from user_team
+		where teamId = #{teamId,jdbcType=INTEGER}
+	</delete>
 	<delete id="deleteUserFromTeam">
 		delete from user_team
 		where teamId = #{teamId,jdbcType=INTEGER} and userId= #{userId,jdbcType=INTEGER}
@@ -86,6 +98,12 @@
 			<if test="teamName != null">
 				teamName,
 			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="ownerId != null">
+				ownerId,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="teamId != null">
@@ -94,6 +112,12 @@
 			<if test="teamName != null">
 				#{teamName,jdbcType=VARCHAR},
 			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="ownerId != null">
+				#{ownerId,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.cloud.model.Team">
@@ -101,6 +125,12 @@
 		<set>
 			<if test="teamName != null">
 				teamName = #{teamName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="ownerId != null">
+				ownerId = #{ownerId,jdbcType=INTEGER},
 			</if>
 		</set>
 		where teamId = #{teamId,jdbcType=INTEGER}

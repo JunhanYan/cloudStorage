@@ -1,0 +1,28 @@
+/**
+ *
+ * Apply your custom CSS here
+ *
+*/
+
+body {
+	color: #AAA;
+}
+
+a {
+}
+
+.control-navbar button {
+	margin-left: 25px;
+	width: 91px;
+	margin-bottom: 0;
+}
+
+.page-container .main-content .page-title.control-navbar {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 0;
+}
+
+.cloud-table.panel {
+	margin: 0px -30px 30px;
+}

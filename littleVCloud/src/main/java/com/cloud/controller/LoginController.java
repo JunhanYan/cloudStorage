@@ -13,7 +13,6 @@ import com.cloud.service.UserServiceI;
 import com.cloud.model.User;
 
 @Controller
-
 public class LoginController {
 	private UserServiceI userService;
 

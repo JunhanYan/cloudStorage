@@ -41,7 +41,7 @@
 	<select id="getUserTeams" resultType="com.cloud.model.Team"
 		parameterType="int">
 		select
-		team.teamId,team.teamName 
+		team.teamId,team.teamName,team.createTime, team.ownerId
 		from team
 		JOIN user_team ON user_team.teamId=team.teamId and user_team.userId=#{userid,jdbcType=INTEGER}		
 	</select>
@@ -56,7 +56,7 @@
 		parameterType="int">
 		select
 		user.userId, user.userName, user.password, user.userAccount,
-			team.teamId,team.teamName 
+			team.teamId,team.teamName
 		from user
 		JOIN user_team ON user.userId=user_team.userId and user_team.userId=#{userId,jdbcType=INTEGER}
 		JOIN team ON

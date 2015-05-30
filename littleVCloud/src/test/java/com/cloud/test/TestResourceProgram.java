@@ -106,6 +106,19 @@ public class TestResourceProgram {
 	}
 	
 	@Test
+	public void testGetResourcesByFolder() {
+		List<Resource> resources = resourceService.getResourcesByFolder(1);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			logger.info(mapper.writeValueAsString(resources));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	public void testGetSharedResource() {
 		List<Resource> resources = resourceService.getSharedResource(1);
 		ObjectMapper mapper = new ObjectMapper();

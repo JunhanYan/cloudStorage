@@ -27,7 +27,7 @@ import java.util.List;
 
 public class TestRoleProgram {
 
-	private static final Logger logger = Logger.getLogger(TestUserProgram.class);
+	private static final Logger logger = Logger.getLogger(TestRoleProgram.class);
 
 	private RoleServiceI roleService;
 	
@@ -102,5 +102,4 @@ public class TestRoleProgram {
 	public void testDeleteUserFromRole() {		
 			logger.info(roleService.deleteUserFromRole(2, 1));
 	}
-}
-*/	
+}*/

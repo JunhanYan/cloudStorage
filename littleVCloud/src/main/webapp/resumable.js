@@ -530,6 +530,7 @@
         return(!outstanding);
       };
       $.pause = function(pause){
+    	 
           if(typeof(pause)==='undefined'){
               $._pause = ($._pause ? false : true);
           }else{
@@ -612,8 +613,8 @@
         params.push([parameterNamespace+'resumableFilename', encodeURIComponent($.fileObj.fileName)].join('='));
         params.push([parameterNamespace+'resumableRelativePath', encodeURIComponent($.fileObj.relativePath)].join('='));
         params.push([parameterNamespace+'resumableTotalChunks', encodeURIComponent($.fileObj.chunks.length)].join('='));
-        params.push([parameterNamespace+'uploaderId', encodeURIComponent(1)].join('='));
-        params.push([parameterNamespace+'folderID', encodeURIComponent(1)].join('='));
+        params.push([parameterNamespace+'uploaderId', encodeURIComponent(userId)].join('='));
+        params.push([parameterNamespace+'folderId', encodeURIComponent( ((current_parent) ? (current_parent) : (home_id) ) )].join('='));
         // Append the relevant chunk and send it
         $.xhr.open('GET', $h.getTarget(params));
         $.xhr.timeout = $.getOpt('xhrTimeout');
@@ -694,8 +695,8 @@
           resumableFilename: $.fileObj.fileName,
           resumableRelativePath: $.fileObj.relativePath,
           resumableTotalChunks: $.fileObj.chunks.length,
-          uploaderId: 1,
-          uploadDate: '2015-1-1'
+          uploaderId:userId,
+          folderId:((current_parent) ? (current_parent) : (home_id) )
         };
         // Mix in custom data
         var customQuery = $.getOpt('query');
@@ -917,6 +918,7 @@
       }
     };
     $.pause = function(){
+    	 
       // Resume all chunks currently being uploaded
       $h.each($.files, function(file){
         file.abort();

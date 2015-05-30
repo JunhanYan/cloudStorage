@@ -7,9 +7,28 @@ public class Team {
 
     private String teamName;
     
+    private String createTime;
+    private Integer ownerId;
+    
     private List<User> users;
 
-    public Integer getTeamId() {
+    public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+	public Integer getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(Integer ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public Integer getTeamId() {
         return teamId;
     }
 

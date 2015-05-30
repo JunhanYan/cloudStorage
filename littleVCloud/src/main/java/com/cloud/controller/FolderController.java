@@ -1,5 +1,7 @@
 package com.cloud.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +38,7 @@ public class FolderController {
 
 	@RequestMapping(value="/newFolder",method=RequestMethod.POST)
 	public @ResponseBody Folder newFolder(@RequestBody Folder folder) {
-		
+		folder.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		if(folderService.newFolder(folder)>0)
 			return folder;
 		else

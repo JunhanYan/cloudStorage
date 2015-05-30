@@ -107,7 +107,7 @@ public class TestTeamProgram {
 	@Test
 	public void testDeleteByKey() {
 		
-			logger.info(teamService.deleteTeam(3));
+			logger.info(teamService.deleteTeam(1));
 	}
 	
 	@Test
@@ -132,4 +132,4 @@ public class TestTeamProgram {
 			logger.info(teamService.deleteUserFromTeam(1, 3));
 	}	
 }
-	*/
+*/

@@ -64,12 +64,12 @@ public class TestUserProgram {
 		}
 	}
 	
-	@Test
-	public void testVerifyAccountAvaliable() {
-		boolean existUser = userService.verifyAccountAvaliable("yanjunhan");
-		
-			logger.info(existUser+"=======================");
-	}
+//	@Test
+//	public void testVerifyAccountAvaliable() {
+//		boolean existUser = userService.verifyAccountAvaliable("yanjunhan");
+//		
+//			logger.info(existUser+"=======================");
+//	}
 	
 	@Test
 	public void testUserAndTeams() {
@@ -158,4 +158,4 @@ public class TestUserProgram {
 			logger.info(userService.modifyUser(u));
 	}	
 }
-	*/
+*/

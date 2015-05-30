@@ -12,7 +12,7 @@
 	
 	<title>小V云盘</title>
 
-	<link rel="stylesheet" href="http://fonts.useso.com/css?family=Arimo:400,700,400italic">
+<!--	<link rel="stylesheet" href="http://fonts.useso.com/css?family=Arimo:400,700,400italic"> -->
 	<link rel="stylesheet" href="css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="css/fonts/fontawesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -21,10 +21,13 @@
 	<link rel="stylesheet" href="css/xenon-components.css">
 	<link rel="stylesheet" href="css/xenon-skins.css">
 	<link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+	
+	
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js">
-	</script>
+    <script src="resumable.js"></script>
+	
+	<script src="js/jquery-1.8.2.min.js"></script>
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -84,7 +87,7 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li class="opened active">
+					<li class="opened active" >
 						<a href="myresource.jsp">
 							<i class="linecons-database"></i>
 							<span class="title">全部文件</span>
@@ -108,7 +111,7 @@
 							<span class="title">视频</span>
 						</a>
 					</li>
-					<li>
+					<li >
                  
 						<a href="music.jsp">
 							<i class="linecons-music"></i>
@@ -122,51 +125,65 @@
 						</a>
                         </li>
 					<li>
-						<a href="charts-main.html">
+						<a href="managerGroup.jsp">
 							<i class="linecons-user"></i>
-							<span class="title">群组</span>
+							    <span class="title">群组管理</span>
 						</a>
 						<ul>
 							<li>
-								<a href="charts-main.html">
-									<span class="title">群组消息</span>
-                                    <span class="label label-success pull-right">5</span>
+								<a href="share.jsp">
+									<span class="title">我的分享</span>
 								</a>
 							</li>
 							<li>
-								<a href="charts-range.html">
-									<span class="title">创建群组</span>
+								<a href="managerGroup.jsp">
+									<span class="title">群组成员信息</span>
 								</a>
 							</li>
 							<li>
-								<a href="charts-sparklines.html">
+								<a href="applyGroup.jsp">
 									<span class="title">申请入组</span>
 								</a>
 							</li>
-							
+							<li>
+								<a href="inviteGroup.jsp">
+									<span class="title">邀请入组</span>
+								</a>
+							</li>
 						</ul>
 					</li>
-					<li>
-						<a href="#">
+					<li >
+						<a href="trash.jsp">
 							<i class="linecons-trash"></i>
 							<span class="title">回收站</span>
 						</a>			
 					</li>	
-                    <li>
+           			 <li>
 						<a href="#">
 							<i class="linecons-cloud"></i>
-							<span class="title">私密空间</span>
-						</a>			
+							<span class="title">关注</span>
+						</a>
+						<ul>
+							<li>
+								<a href="followWho.jsp">
+									<span class="title">我关注的</span>
+								</a>
+							</li>
+							<li>
+								<a href="whoFollow.jsp">
+									<span class="title">谁关注我</span>
+								</a>
+							</li>
+						</ul>			
 					</li>					
 						
 			</div>
-			
 		</div>
 		
 		<div class="main-content">
 					
 			<!-- User Info, Notifications and Menu Bar -->
-			<nav class="navbar user-info-navbar" role="navigation">
+			<nav class="navbar user-info-navbar" role="navigation" id="navbar">
 				
 				<!-- Left links for user info navbar -->
 				<ul class="user-info-menu left-links list-inline list-unstyled">
@@ -422,7 +439,7 @@
 				
 				
 				<!-- Right links for user info navbar -->
-				<ul class="user-info-menu right-links list-inline list-unstyled">
+				<ul class="user-info-menu right-links list-inline list-unstyled" id="right-links">
 					
 					<li class="search-form"><!-- You can add "always-visible" to show make the search input visible -->
 						
@@ -437,43 +454,26 @@
 					</li>
 					
 					<li class="dropdown user-profile">
-						<a href="#" data-toggle="dropdown">
-							<img src="images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
-							<span>
-								yanjunhan
+						<a href="myresource.jsp" data-toggle="dropdown">
+						<img src="images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+							<span id = "name" class = "username" >
+							
 								<i class="fa-angle-down"></i>
+								<span data-type="username"></span>
 							</span>
 						</a>
 						
 						<ul class="dropdown-menu user-profile-menu list-unstyled">
-							<li>
-								<a href="#edit-profile">
-									<i class="fa-edit"></i>
-									New Post
-								</a>
-							</li>
-							<li>
-								<a href="#settings">
+						<li>
+								<a href="changePassword.jsp">
 									<i class="fa-wrench"></i>
-									Settings
-								</a>
-							</li>
-							<li>
-								<a href="#profile">
-									<i class="fa-user"></i>
-									Profile
-								</a>
-							</li>
-							<li>
-								<a href="#help">
-									<i class="fa-info"></i>
-									Help
+									设置
 								</a>
 							</li>
 							<li class="last">
-								<a href="extra-lockscreen.html">
+								<a href="login.jsp" onclick="">
 									<i class="fa-lock"></i>
-									Logout
+									注销
 								</a>
 							</li>
 						</ul>
@@ -481,7 +481,7 @@
 					
 					<li>
 						<a href="#" data-toggle="chat">
-							<i class="fa-comments-o"></i>
+							<i class="fa-heart-o"></i>
 						</a>
 					</li>
 					
@@ -491,14 +491,114 @@
 			<div>
                 <div class="page-title control-navbar">
                 	<div id="toolbar" class="title-env">
-                       <button id="upload-button"class="btn btn-turquoise">上传</button>
+                      <button id="upload-button"class="btn btn-turquoise" onclick="showhidediv()">上传</button>
                        <button id="download-button"class="btn btn-orange">下载</button>
                        <button id="newfile-button"class="btn btn-purple">新建文件夹</button>
                        <button id="rubbish-button"class="btn btn-secondary">回收站</button>
                        <button id="share-button"class="btn btn-pink">分享</button>
-                       <button id="private-button"class="btn btn-red">私密空间</button>
                     </div>
                 </div>
+
+				<div class="hidden" id="upload_zone"> 
+					<a href="#" style="position:absolute;right:0;top:0" onclick="$('#upload_zone').toggleClass('hidden')" position><img src="cancel.png" title="close" /></a>               
+                  <div class="resumable-error">
+			        Your browser, unfortunately, is not supported by Resumable.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.
+			      </div>
+			
+			      <div class="resumable-drop" ondragenter="jQuery(this).addClass('resumable-dragover');" ondragend="jQuery(this).removeClass('resumable-dragover');" ondrop="jQuery(this).removeClass('resumable-dragover');">
+			        Drop video files here to upload or <a class="resumable-browse"><u>select from your computer</u></a>
+			      </div>
+			      
+			      <div class="resumable-progress">
+			        <table>
+			          <tr>
+			            <td width="100%"><div class="progress-container"><div class="progress-bar"></div></div></td>
+			            <td class="progress-text" nowrap="nowrap"></td>
+			            <td class="progress-pause" nowrap="nowrap">
+			              <a href="#" onclick="r.upload(); return(false);" class="progress-resume-link"><img src="resume.png" title="Resume upload" /></a>
+			              <a href="#" onclick="r.pause(); return(false);" class="progress-pause-link"><img src="pause.png" title="Pause upload" /></a>
+			              <a href="#" onclick="r.cancel(); return(false);" class="progress-cancel-link"><img src="cancel.png" title="Cancel upload" /></a>
+			            </td>
+			          </tr>
+			        </table>
+			      </div>
+			      
+			      <ul class="resumable-list"></ul>
+				</div>                
+                
+                
+                <script>
+                var r ;
+                function showhidediv(){
+                	$("#upload_zone").toggleClass("hidden");
+                	
+           	        r = new Resumable({
+                       target:'upload',
+                       chunkSize:1*1024*1024,
+                       simultaneousUploads:4,
+                       testChunks: true,
+                       throttleProgressCallbacks:1,
+                       method: "octet"
+                     });
+                   // Resumable.js isn't supported, fall back on a different method
+                   if(!r.support) {
+                     $('.resumable-error').show();
+                   } else {
+                     // Show a place for dropping/selecting files
+                     $('.resumable-drop').show();
+                     r.assignDrop($('.resumable-drop')[0]);
+                     r.assignBrowse($('.resumable-browse')[0]);
+
+                     // Handle file add event
+                     r.on('fileAdded', function(file){
+                         // Show progress pabr
+                         $('.resumable-progress, .resumable-list').show();
+                         // Show pause, hide resume
+                         $('.resumable-progress .progress-resume-link').hide();
+                         $('.resumable-progress .progress-pause-link').show();
+                         // Add the file to the list
+                         $('.resumable-list').append('<li class="resumable-file-'+file.uniqueIdentifier+'">Uploading <span class="resumable-file-name"></span> <span class="resumable-file-progress"></span>');
+                         $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-name').html(file.fileName);
+                         // Actually start the upload
+                         r.upload();
+                       });
+                     r.on('pause', function(){
+                         // Show resume, hide pause
+                         $('.resumable-progress .progress-resume-link').show();
+                         $('.resumable-progress .progress-pause-link').hide();
+                       });
+                     r.on('fileRetry', function(){
+                         // Show resume, hide pause
+                         $('.resumable-progress .progress-resume-link').hide();
+                         $('.resumable-progress .progress-pause-link').show();
+                       });
+                     r.on('complete', function(){
+                         // Hide pause/resume when the upload has completed
+                         $('.resumable-progress .progress-resume-link, .resumable-progress .progress-pause-link').hide();
+                       });
+                     r.on('fileSuccess', function(file,message){
+                         // Reflect that the file upload has completed
+                         $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(completed)');
+                         loadTable("getResourcesByFolder/", current_parent);
+                       });
+                     r.on('fileError', function(file, message){
+                         // Reflect that the file upload has resulted in error
+                         $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html('(file could not be uploaded: '+message+')');
+                       });
+                     r.on('fileProgress', function(file){
+                         // Handle progress for both the file and the overall upload
+                         $('.resumable-file-'+file.uniqueIdentifier+' .resumable-file-progress').html(Math.floor(file.progress()*100) + '%');
+                         $('.progress-bar').css({width:Math.floor(r.progress()*100) + '%'});
+                       });
+                     r.on('uploadStart', function(){
+                         // Show pause, hide resume
+                         $('.resumable-progress .progress-resume-link').hide();
+                         $('.resumable-progress .progress-pause-link').show();
+                     });
+                   }
+				}
+                </script>
+                
              	<div class="panel panel-default cloud-table">
                 
                     <table class="table responsive" id="resource-table">
@@ -508,19 +608,11 @@
                                 <th>文件名</th>
                                 <th>大小</th>
                                 <th>文件类型</th>
+                                <th>上传人</th>      
                                 <th>上传时间</th>      
                             </tr>
                         </thead>
                         <tbody>
-                        	<tr class="no_data"><th>No data available</th></tr>
-                            <tr class="resource-template hidden">
-                                <th><input type="checkbox" name="selectFlag" id="resourceId"value="checkbox1"></input></th>
-                                <th class="name"></th>
-                                <th class="size"></th>
-                                <th class="type"></th>
-                                <th class="date"></th>
-                                
-                            </tr>
                         </tbody>
                     </table>
                    
@@ -537,16 +629,6 @@
 				
 				<div class="footer-inner">
 				
-					<!-- Add your copyright text here -->
-                    <!--
-					<div class="footer-text">
-						&copy; 2014 
-						<strong>Xenon</strong> 
-						More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-					</div>
-					-->
-					
-					<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
 					<div class="go-up">
 					
 						<a href="#" rel="go-top">
@@ -682,106 +764,34 @@
 	<script src="js/joinable.js"></script>
 	<script src="js/xenon-api.js"></script>
 	<script src="js/xenon-toggles.js"></script>
-
-
+    
+   
 	<!-- JavaScripts initializations and stuff -->
 	<script src="js/xenon-custom.js"></script>
+	
+	
+	<script src="js/index.js"></script>
 	<script type="text/javascript">
-					// Here is just a sample how to open chat conversation box
-	 function folderAndResource(parent){
-		 var $table = $("#resource-table");
-     	var $template = $table.find(".resource-template");
-     	var $body = $table.children("tbody");
-     	
-     	$body.html('<tr class="no_data"><th>No data available</th></tr>'+
-                '<tr class="resource-template hidden">'+
-        '<th><input type="checkbox" name="selectFlag" id="resourceId"value="checkbox1"></input></th>'+
-        '<th class="name"></th>'+
-        '<th class="size"></th>'+
-        '<th class="type"></th>'+
-        '<th class="date"></th></tr>');
-							 $.ajax({
-						            url: 'http://localhost:8080/littleVCloud/folderController/getFolderByParentAndUser/'+parent+'-1.do',
-						            type: 'GET',
-						            contentType:'application/json;charset=UTF-8'
-						           })
-						            .success(function (datas, status, headers, config) {				            	
-						            	
-						            	if (datas.length > 0) {
-							            	$table.find(".no_data").hide();
-						            	}
-						            	for(var i = 0; i < datas.length; ++i) {
-						            		var $clone = $template.clone();
-						     				$clone.removeClass("hidden resource-template");
-						     				
-						            			$clone.children(".name").html('<a onclick = folderAndResource('+datas[i].folderId+')>'+datas[i].folderName+'</a>');
-						            			$clone.children(".size").html("--");
-						            			$clone.children(".type").html("dir");
-						            			$clone.children(".date").html(datas[i].date);
-						            			$body.append($clone);			            		
-						            	}			            		
-						            });	
-							 
-							 $.ajax({
-						            url: 'http://localhost:8080/littleVCloud/resourceController/getResourcesByFolder/'+parent+'.do',
-						            type: 'GET',
-						            contentType:'application/json;charset=UTF-8'
-						           })
-						            .success(function (datas, status, headers, config) {				            						         
-						            	if (datas.length > 0) {
-							            	$table.find(".no_data").hide();
-						            	}
-						            	for(var i = 0; i < datas.length; ++i) {
-						            		var $clone = $template.clone();
-						     				$clone.removeClass("hidden resource-template");
-						     				
-						            			$clone.children(".name").html('<a>'+datas[i].resourceName+'</a>');
-						            			$clone.children(".size").html(datas[i].size);
-						            			$clone.children(".type").html(datas[i].type);
-						            			$clone.children(".date").html(datas[i].uploadTime);
-						            			$body.append($clone);			            		
-						            	}
-						            		
-						            });		
-							 
-							 
-						 }
-					jQuery(document).ready(function($)
-					{
-						var root;
-						 $.ajax({
-					            url: 'http://localhost:8080/littleVCloud/folderController/getFolderByParentAndUser/0-1.do',
-					            type: 'GET',
-					            contentType:'application/json;charset=UTF-8'
-					           })
-					            .success(function (datas, status, headers, config) {				            	
-					            		
-					            	folderAndResource(datas[0].folderId);
-					            });	
-						
-						
-						var $chat_conversation = $(".chat-conversation");
-						
-						$(".chat-group a").on('click', function(ev)
-						{
-							ev.preventDefault();
-							
-							$chat_conversation.toggleClass('is-open');
-							
-							$(".chat-conversation textarea").trigger('autosize.resize').focus();
-						});
-						
-						$(".conversation-close").on('click', function(ev)
-						{
-							ev.preventDefault();
-							$chat_conversation.removeClass('is-open');
-						});
-						
-						
-					});
-					
-						 
-					
+	jQuery(document).ready(function($){
+
+
+		main("getResourcesByFolder/", 0);
+		
+	    var $chat_conversation = $(".chat-conversation");
+	
+	    $(".chat-group a").on('click', function(ev) {
+	        ev.preventDefault();
+	
+	        $chat_conversation.toggleClass('is-open');
+	
+	        $(".chat-conversation textarea").trigger('autosize.resize').focus();
+	    });
+	
+	    $(".conversation-close").on('click', function(ev) {
+	        ev.preventDefault();
+	        $chat_conversation.removeClass('is-open');
+	    });
+	});
 	</script>
 </body>
 </html>

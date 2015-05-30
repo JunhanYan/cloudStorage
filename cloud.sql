@@ -55,7 +55,7 @@ CREATE TABLE `folder` (
   `userId` int(11) NOT NULL,
   `date` varchar(255) NOT NULL,
   PRIMARY KEY (`folderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `folder` (
 
 LOCK TABLES `folder` WRITE;
 /*!40000 ALTER TABLE `folder` DISABLE KEYS */;
-INSERT INTO `folder` VALUES (1,'home',0,1,'2015-1-1'),(2,'jh',1,1,'2015-1-1'),(3,'aaaa',1,1,'2015-1-1'),(4,'test',2,1,'2011'),(5,'home',0,6,'2015-05-19');
+INSERT INTO `folder` VALUES (1,'home',0,1,'2015-1-1'),(2,'jh',1,1,'2015-1-1'),(3,'aaaa',1,1,'2015-1-1'),(4,'test',2,1,'2011'),(5,'home',0,6,'2015-05-19'),(6,'home',0,9,'2015-05-26'),(7,'home',0,10,'2015-05-26'),(8,'home',0,13,'2015-05-26'),(9,'home',0,14,'2015-05-26');
 /*!40000 ALTER TABLE `folder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,7 @@ CREATE TABLE `follow` (
   `who` int(11) NOT NULL,
   `target` int(11) NOT NULL,
   PRIMARY KEY (`followId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `follow` (
 
 LOCK TABLES `follow` WRITE;
 /*!40000 ALTER TABLE `follow` DISABLE KEYS */;
-INSERT INTO `follow` VALUES (4,2,1);
+INSERT INTO `follow` VALUES (4,2,1),(5,1,1);
 /*!40000 ALTER TABLE `follow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,13 +108,13 @@ CREATE TABLE `resource` (
   `description` varchar(255) DEFAULT NULL,
   `uploaderId` int(11) NOT NULL,
   `uploadTime` varchar(50) NOT NULL,
-  `downloadTimes` int(11) NOT NULL DEFAULT '0',
+  `downloadTimes` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
-  `folderId` int(11) NOT NULL DEFAULT '0',
-  `process` int(11) DEFAULT '0',
+  `folderId` int(11) NOT NULL,
+  `process` int(11) DEFAULT NULL,
   `size` int(11) NOT NULL,
   PRIMARY KEY (`resourceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +123,7 @@ CREATE TABLE `resource` (
 
 LOCK TABLES `resource` WRITE;
 /*!40000 ALTER TABLE `resource` DISABLE KEYS */;
-INSERT INTO `resource` VALUES (1,'myfile','doc','/home/mydir/','aaaaaa',1,'2015-4-20',2,1,1,0,20),(2,'myfile','doc','/home/mydir/','aaaaaa',1,'2015-4-20',2,1,2,0,20),(3,'myfile','doc','/home/mydir/','aaaaaa',1,'2015-4-20',2,1,3,0,20);
+INSERT INTO `resource` VALUES (1,'myfile','doc','/home/mydir/','aaaaaa',1,'2015-4-20',2,0,1,20,20),(2,'myfile','doc','/home/mydir/','aaaaaa',1,'2015-4-20',2,0,1,20,20),(4,'b.doc','doc','','',1,'2015-05-24',0,0,2,0,793088),(5,'b.doc','doc','','',1,'2015-05-26',0,0,1,0,793088),(6,'c.tar.gz','others','','',1,'2015-05-26',0,1,1,264353197,264353197),(7,'c.tar.gz','others','','',1,'2015-05-26',0,0,2,0,264353197),(8,'b.doc','doc','','',1,'2015-05-26',0,0,1,0,793088),(9,'c.tar.gz','others','','',1,'2015-05-26',0,0,1,0,264353197);
 /*!40000 ALTER TABLE `resource` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,8 +161,10 @@ DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team` (
   `teamId` int(11) NOT NULL AUTO_INCREMENT,
   `teamName` varchar(50) NOT NULL,
+  `createTime` varchar(255) NOT NULL,
+  `ownerId` int(11) NOT NULL,
   PRIMARY KEY (`teamId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +173,7 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES (1,'cloud'),(2,'test'),(3,'test2');
+INSERT INTO `team` VALUES (2,'test','',0),(3,'test2','',0),(4,'hehhe','2015-05-24 20:18:07',1),(6,'hehhe','2015-05-24 20:23:41',1),(7,'hehhe','2015-05-24 20:25:04',1);
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +190,7 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL,
   `userAccount` varchar(50) NOT NULL,
   PRIMARY KEY (`userId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +199,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'yanjunhan','1','yanjunhan'),(2,'test','1','test'),(3,'test1','1','test1'),(4,'test2','11','test2'),(5,'test11','1','test11'),(6,'test12','1','test12');
+INSERT INTO `user` VALUES (1,'yanjunhan','1','yanjunhan'),(2,'test','1','test'),(3,'test1','1','test1'),(5,'test11','1','test11'),(6,'test12','1','test12'),(7,'test2','1','test2'),(8,'test2','1','test2'),(9,'ha','1','haha'),(10,'','',''),(11,'','',''),(12,'','',''),(13,'fafa','1','hahaha'),(14,'v','2','v');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +240,7 @@ CREATE TABLE `user_team` (
   `userId` int(11) NOT NULL,
   `teamId` int(11) NOT NULL,
   PRIMARY KEY (`user_teamId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +249,7 @@ CREATE TABLE `user_team` (
 
 LOCK TABLES `user_team` WRITE;
 /*!40000 ALTER TABLE `user_team` DISABLE KEYS */;
-INSERT INTO `user_team` VALUES (1,1,1),(2,1,2),(3,2,1);
+INSERT INTO `user_team` VALUES (2,1,2);
 /*!40000 ALTER TABLE `user_team` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -260,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-19 18:20:41
+-- Dump completed on 2015-05-26 22:41:00

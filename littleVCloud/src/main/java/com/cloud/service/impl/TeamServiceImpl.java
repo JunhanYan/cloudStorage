@@ -36,7 +36,7 @@ public class TeamServiceImpl implements TeamServiceI {
 	@Override
 	public int deleteTeam(int teamId) {
 		
-		return teamMapper.deleteByPrimaryKey(teamId);
+		return teamMapper.deleteByPrimaryKey(teamId)+teamMapper.deleteUsersFromTeam(teamId);
 	}
 	@Override
 	public int deleteUserFromTeam(int userId, int teamId) {
@@ -71,5 +71,9 @@ public class TeamServiceImpl implements TeamServiceI {
 	@Override
 	public List<Team> getAllTeams() {
 		return teamMapper.getAllTeams();
+	}
+	@Override
+	public Team getTeamByTimeAndOwner(String createTime, int ownerId) {
+		return teamMapper.getTeamByTimeAndOwner(createTime, ownerId);
 	}
 }

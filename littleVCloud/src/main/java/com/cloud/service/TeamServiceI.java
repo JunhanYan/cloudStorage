@@ -2,6 +2,8 @@ package com.cloud.service;
 
 import java.util.List;
 
+
+
 import com.cloud.model.Team;
 import com.cloud.model.User;
 
@@ -19,5 +21,6 @@ public interface TeamServiceI {
 	public int deleteUserFromTeam(int userId, int teamId);
 	
 	public List<Team> getAllTeams();
+	public Team getTeamByTimeAndOwner(String createTime, int ownerId);
 
 }
